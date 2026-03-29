@@ -1,0 +1,2309 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 義大利之旅 | Italy Trip Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2d3436;
+  --primary-warm: #6c5b4a;
+  --accent: #b44233;
+  --accent-light: #d35445;
+  --gold: #c9a96e;
+  --gold-light: #dfc08a;
+  --gold-dark: #a68a4e;
+  --bg: #f8f6f1;
+  --bg-warm: #f3efe8;
+  --bg-card: #ffffff;
+  --text: #2d3436;
+  --text-light: #7a7572;
+  --text-muted: #a09a94;
+  --border: #e8e3db;
+  --border-light: #f0ece5;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow: 0 4px 16px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-xl: 0 20px 60px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --siena: #b44233;
+  --florence: #7c5cbf;
+  --milan: #3a7bd5;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============ Navigation ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-brand {
+  padding: 14px 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 1.2em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 1px;
+  color: var(--primary);
+}
+
+.nav-link {
+  padding: 16px 18px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 0.88em;
+  font-weight: 500;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+  flex-shrink: 0;
+  letter-spacing: 0.3px;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background: rgba(201,169,110,0.08);
+}
+
+.nav-link.active {
+  color: var(--primary);
+  border-bottom-color: var(--gold);
+  font-weight: 600;
+}
+
+/* ============ Hero ============ */
+.hero {
+  background: linear-gradient(145deg, #2d3436 0%, #3d3029 40%, #4a3728 70%, #2d3436 100%);
+  color: white;
+  padding: 72px 24px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(201,169,110,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(201,169,110,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3em;
+  margin-bottom: 14px;
+  letter-spacing: 6px;
+  font-weight: 700;
+  position: relative;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.hero .subtitle {
+  font-size: 1em;
+  opacity: 0.7;
+  margin-bottom: 32px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  position: relative;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8em;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1.1;
+}
+
+.hero-stat .label {
+  font-size: 0.8em;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+/* ============ Section ============ */
+.section {
+  display: none;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section.active { display: block; }
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8em;
+  font-weight: 700;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary);
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+}
+
+/* ============ Cards ============ */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow);
+}
+
+.card-header {
+  padding: 18px 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  user-select: none;
+  transition: background 0.2s ease;
+}
+
+.card-header:hover { background: var(--bg-warm); }
+
+.card-header .arrow {
+  transition: transform 0.3s ease;
+  font-size: 0.7em;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.card.open .card-header .arrow { transform: rotate(90deg); }
+
+.card-header .day-badge {
+  font-size: 0.72em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 600;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.card-header h3 {
+  flex: 1;
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.card-header .date {
+  font-size: 0.82em;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.card-body {
+  display: none;
+  padding: 4px 24px 24px;
+  line-height: 1.85;
+}
+
+.card.open .card-body { display: block; }
+
+/* City colors */
+.city-siena { background: var(--siena); }
+.city-florence { background: var(--florence); }
+.city-milan { background: var(--milan); }
+.city-travel { background: #8d9196; }
+
+/* ============ Timeline ============ */
+.timeline-item {
+  padding: 12px 0 12px 28px;
+  border-left: 2px solid var(--border);
+  position: relative;
+  margin-left: 10px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 18px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary-warm);
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 0 0 2px var(--border);
+}
+
+.timeline-item.meal::before { background: var(--accent); box-shadow: 0 0 0 2px rgba(180,66,51,0.2); }
+.timeline-item.ticket::before { background: var(--gold-dark); box-shadow: 0 0 0 2px rgba(201,169,110,0.3); }
+
+.timeline-time {
+  font-weight: 700;
+  color: var(--primary-warm);
+  font-size: 0.85em;
+  letter-spacing: 0.5px;
+}
+
+.timeline-title {
+  font-weight: 600;
+  margin: 3px 0;
+  font-size: 0.95em;
+}
+
+.timeline-desc {
+  font-size: 0.88em;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+.timeline-tip {
+  font-size: 0.84em;
+  background: linear-gradient(135deg, #f7f5f0, #f2efe8);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin-top: 8px;
+  color: var(--primary-warm);
+  border-left: 3px solid var(--gold);
+  line-height: 1.7;
+}
+
+.ticket-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: white;
+  font-size: 0.72em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-left: 6px;
+  letter-spacing: 0.3px;
+}
+
+.warning-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 0.72em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ============ Guide Cards ============ */
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.guide-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.guide-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.guide-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.guide-card:hover::after { opacity: 1; }
+
+.guide-card-top {
+  padding: 24px;
+}
+
+.guide-card-top h3 {
+  margin-bottom: 8px;
+  font-size: 1.05em;
+  font-weight: 600;
+}
+
+.guide-card-top .meta {
+  font-size: 0.84em;
+  color: var(--text-muted);
+}
+
+.guide-card-top .city-tag {
+  display: inline-block;
+  font-size: 0.7em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  margin-right: 6px;
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+
+/* ============ Guide Modal ============ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(45,52,54,0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 200;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-overlay.show { display: flex; }
+
+.modal {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  max-width: 800px;
+  width: 100%;
+  margin: 40px auto;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+}
+
+.modal-header {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+.modal-close {
+  cursor: pointer;
+  font-size: 1.5em;
+  color: var(--text-muted);
+  border: none;
+  background: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.modal-close:hover { background: var(--bg-warm); color: var(--text); }
+
+.modal-body {
+  padding: 28px;
+  line-height: 1.85;
+}
+
+.modal-body h3 {
+  margin: 28px 0 12px;
+  color: var(--primary-warm);
+  font-size: 1.15em;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.modal-body h4 {
+  margin: 18px 0 8px;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.modal-body p { margin-bottom: 12px; }
+
+.modal-body ul, .modal-body ol {
+  padding-left: 24px;
+  margin-bottom: 14px;
+}
+
+.modal-body li { margin-bottom: 8px; }
+
+.modal-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 0.9em;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.modal-body th, .modal-body td {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.modal-body th {
+  background: var(--bg-warm);
+  font-weight: 600;
+  color: var(--primary-warm);
+}
+
+.modal-body .highlight-box {
+  background: linear-gradient(135deg, #fdf8ee, #fef5e0);
+  border: 1px solid var(--gold-light);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  margin: 14px 0;
+}
+
+.modal-body .tip-box {
+  background: linear-gradient(135deg, #f7f5f0, #f2efe8);
+  border-left: 3px solid var(--gold);
+  padding: 14px 18px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 14px 0;
+}
+
+.modal-body .warn-box {
+  background: linear-gradient(135deg, #fdf2f0, #fce8e5);
+  border-left: 3px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 14px 0;
+}
+
+/* ============ Transport Table ============ */
+.transport-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-light);
+}
+
+.transport-table th {
+  background: var(--primary);
+  color: white;
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.88em;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.transport-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.transport-table tr:hover td { background: var(--bg-warm); }
+
+.status-booked {
+  color: #4a8c5c;
+  font-weight: 600;
+}
+
+.status-pending {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ============ Etiquette ============ */
+.etiquette-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+  transition: box-shadow 0.3s ease;
+}
+
+.etiquette-card:hover { box-shadow: var(--shadow); }
+
+.etiquette-card h3 {
+  color: var(--primary-warm);
+  margin-bottom: 12px;
+  font-size: 1.08em;
+  font-weight: 700;
+}
+
+.etiquette-card .do-dont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.do-item, .dont-item {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88em;
+  line-height: 1.6;
+}
+
+.do-item { background: linear-gradient(135deg, #f4f9f5, #eef5ef); }
+.dont-item { background: linear-gradient(135deg, #fdf2f0, #fce8e5); }
+
+/* ============ Checklist ============ */
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-light);
+}
+
+.checklist-item:hover { box-shadow: var(--shadow); transform: translateX(2px); }
+
+.checklist-item.checked {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.checklist-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--gold-dark);
+  flex-shrink: 0;
+}
+
+/* ============ Emergency ============ */
+.emergency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.emergency-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+}
+
+.emergency-card .phone {
+  font-size: 1.4em;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* ============ Italian Phrases ============ */
+.phrase-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-light);
+}
+
+.phrase-table th {
+  background: var(--primary);
+  color: white;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.88em;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.phrase-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.phrase-table .italian {
+  font-weight: 600;
+  color: var(--primary-warm);
+  font-style: italic;
+}
+
+/* ============ Costs ============ */
+.cost-summary {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  margin-bottom: 20px;
+}
+
+.cost-total {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4em;
+  font-weight: 700;
+  color: var(--primary-warm);
+  text-align: center;
+  padding: 18px;
+  background: linear-gradient(135deg, #f7f5f0, #f2efe8);
+  border-radius: var(--radius-sm);
+  margin-top: 18px;
+  border: 1px solid var(--border);
+}
+
+/* ============ Tabs ============ */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+
+.tab {
+  padding: 9px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 0.88em;
+  font-weight: 500;
+  white-space: nowrap;
+  background: var(--bg-warm);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  color: var(--text-light);
+}
+
+.tab:hover { background: var(--border); color: var(--text); }
+.tab.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ============ Search ============ */
+.search-bar {
+  width: 100%;
+  padding: 14px 22px;
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  font-size: 0.95em;
+  font-family: inherit;
+  margin-bottom: 24px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.search-bar:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,169,110,0.15);
+}
+
+/* ============ Footer ============ */
+.footer {
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--text-muted);
+  font-size: 0.84em;
+  border-top: 1px solid var(--border);
+  margin-top: 60px;
+  letter-spacing: 0.5px;
+  line-height: 1.8;
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 768px) {
+  .hero { padding: 48px 16px 40px; }
+  .hero h1 { font-size: 2em; letter-spacing: 3px; }
+  .hero-stats { gap: 24px; }
+  .hero-stat .num { font-size: 2em; }
+  .nav-brand { padding: 12px 14px; font-size: 1em; }
+  .nav-link { padding: 14px 14px; font-size: 0.82em; }
+  .guide-grid { grid-template-columns: 1fr; }
+  .etiquette-card .do-dont { grid-template-columns: 1fr; }
+  .section { padding: 24px 14px 50px; }
+  .card-header { padding: 16px 18px; }
+  .card-body { padding: 4px 18px 18px; }
+  .modal { margin: 10px; max-height: calc(100vh - 20px); border-radius: var(--radius-sm); }
+  .modal-header { padding: 16px 18px; }
+  .modal-body { padding: 18px; }
+  .emergency-grid { grid-template-columns: 1fr; }
+  .transport-table { font-size: 0.8em; }
+  .transport-table th, .transport-table td { padding: 8px 8px; }
+  .etiquette-card { padding: 18px 20px; }
+}
+
+/* ============ Scroll to Top ============ */
+.scroll-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  box-shadow: var(--shadow-lg);
+  display: none;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+.scroll-top:hover { transform: translateY(-2px); box-shadow: var(--shadow-xl); background: var(--primary-warm); }
+
+/* ============ Trip Progress ============ */
+.progress-bar {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 28px;
+  padding: 0 4px;
+}
+
+.progress-segment {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  transition: transform 0.2s;
+}
+
+.progress-segment:hover { transform: scaleY(1.8); }
+
+.progress-segment.siena { background: linear-gradient(90deg, var(--siena), #c95a4d); }
+.progress-segment.florence { background: linear-gradient(90deg, var(--florence), #9a7ed9); }
+.progress-segment.milan { background: linear-gradient(90deg, var(--milan), #5a94e0); }
+.progress-segment.travel { background: #c5c8cc; }
+
+.city-legend {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-size: 0.84em;
+  flex-wrap: wrap;
+  color: var(--text-light);
+}
+
+.city-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ============ Print ============ */
+@media print {
+  .nav, .scroll-top { display: none !important; }
+  .section { display: block !important; page-break-after: always; }
+  .card-body { display: block !important; }
+}
+
+/* ============ Selection Color ============ */
+::selection {
+  background: rgba(201,169,110,0.25);
+  color: var(--primary);
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">Italy 2026</div>
+    <div class="nav-link active" onclick="showSection('overview', this)">總覽</div>
+    <div class="nav-link" onclick="showSection('itinerary', this)">每日行程</div>
+    <div class="nav-link" onclick="showSection('guides', this)">導覽手冊</div>
+    <div class="nav-link" onclick="showSection('transport', this)">交通</div>
+    <div class="nav-link" onclick="showSection('etiquette', this)">文化禮儀</div>
+    <div class="nav-link" onclick="showSection('practical', this)">實用資訊</div>
+    <div class="nav-link" onclick="showSection('costs', this)">費用</div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero" id="hero">
+  <h1>2026 義大利之旅</h1>
+  <div class="subtitle">台北 → 米蘭 → Siena → 佛羅倫斯 → 米蘭 → 台北</div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">11</div><div class="label">天</div></div>
+    <div class="hero-stat"><div class="num">5</div><div class="label">人</div></div>
+    <div class="hero-stat"><div class="num">3</div><div class="label">城市</div></div>
+    <div class="hero-stat"><div class="num">8</div><div class="label">導覽手冊</div></div>
+  </div>
+</div>
+
+<!-- ====== OVERVIEW ====== -->
+<div class="section active" id="sec-overview">
+  <h2 class="section-title">行程總覽</h2>
+
+  <div class="progress-bar">
+    <div class="progress-segment travel" title="Day 0 - 出發"></div>
+    <div class="progress-segment siena" title="Day 1 - Siena"></div>
+    <div class="progress-segment siena" title="Day 2 - Siena"></div>
+    <div class="progress-segment siena" title="Day 3 - San Gimignano"></div>
+    <div class="progress-segment florence" title="Day 4 - 佛羅倫斯"></div>
+    <div class="progress-segment florence" title="Day 5 - 烏菲茲"></div>
+    <div class="progress-segment florence" title="Day 6 - 百花大教堂"></div>
+    <div class="progress-segment florence" title="Day 7 - 大衛像"></div>
+    <div class="progress-segment milan" title="Day 8 - 米蘭"></div>
+    <div class="progress-segment milan" title="Day 9 - 米蘭大教堂"></div>
+    <div class="progress-segment travel" title="Day 10 - 回家"></div>
+  </div>
+
+  <div class="city-legend">
+    <span><span class="legend-dot" style="background:var(--siena)"></span> Siena (3晚)</span>
+    <span><span class="legend-dot" style="background:var(--florence)"></span> 佛羅倫斯 (4晚)</span>
+    <span><span class="legend-dot" style="background:var(--milan)"></span> 米蘭 (2晚)</span>
+  </div>
+
+  <!-- Flight info -->
+  <div class="card open">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <h3>✈ 機票資訊 — 長榮航空 BR95/BR96</h3>
+    </div>
+    <div class="card-body">
+      <table style="width:100%;border-collapse:collapse;font-size:0.9em">
+        <tr><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">項目</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">去程</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">回程</th></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>航班</strong></td><td style="padding:8px;border:1px solid var(--border)">BR95</td><td style="padding:8px;border:1px solid var(--border)">BR96</td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>日期</strong></td><td style="padding:8px;border:1px solid var(--border)">6/13（六）</td><td style="padding:8px;border:1px solid var(--border)">6/23（二）</td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>出發</strong></td><td style="padding:8px;border:1px solid var(--border)">台北 TPE T2 — 23:45</td><td style="padding:8px;border:1px solid var(--border)">米蘭 MXP T1 — 11:15</td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>抵達</strong></td><td style="padding:8px;border:1px solid var(--border)">米蘭 MXP T1 — 07:35(+1)</td><td style="padding:8px;border:1px solid var(--border)">台北 TPE T2 — 06:05(+1)</td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>飛行時間</strong></td><td style="padding:8px;border:1px solid var(--border)">13h50m</td><td style="padding:8px;border:1px solid var(--border)">12h50m</td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>訂位代號</strong></td><td colspan="2" style="padding:8px;border:1px solid var(--border);font-weight:700;font-size:1.1em">（請查看群組訊息）</td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>託運行李</strong></td><td colspan="2" style="padding:8px;border:1px solid var(--border)">每人 2 件（每件 23kg）</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Accommodation -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <h3>🏨 住宿資訊</h3>
+    </div>
+    <div class="card-body">
+      <div style="margin-bottom:16px">
+        <h4 style="color:var(--siena)">Siena — Loggia Senensis (6/14-6/17, 3晚)</h4>
+        <p>📍 Siena 老城區（詳細地址請查群組）<br>
+        💰 EUR 1,121（TWD 41,145）<br>
+        📋 訂房已確認<br>
+        🏠 三臥室高級公寓<br>
+        🔑 退房 10:30 AM<br>
+        ⚠ 取消期限：6/8-6/9</p>
+      </div>
+      <div style="margin-bottom:16px">
+        <h4 style="color:var(--florence)">佛羅倫斯 — UNYCA Luxury Central Suite (6/17-6/21, 4晚)</h4>
+        <p>📍 佛羅倫斯市中心（詳細地址請查群組）<br>
+        💰 EUR 1,330（TWD 48,824）<br>
+        📋 訂房已確認<br>
+        🏠 雙臥室公寓<br>
+        🔑 入住 12:00 PM / 退房 10:00 AM<br>
+        ⚠ 取消期限：6/13</p>
+      </div>
+      <div>
+        <h4 style="color:var(--milan)">米蘭 — 待確認 (6/21-6/23, 2晚)</h4>
+        <p>💰 TWD 27,248<br>
+        ⚠ 6/20 前可免費取消</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tickets -->
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <h3>🎫 已預訂門票</h3>
+    </div>
+    <div class="card-body">
+      <table style="width:100%;border-collapse:collapse;font-size:0.9em">
+        <tr><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">景點</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">日期/時間</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">費用</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">備註</th></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)">烏菲茲美術館</td><td style="padding:8px;border:1px solid var(--border)">6/18 09:00</td><td style="padding:8px;border:1px solid var(--border)">€145 (每人€29)</td><td style="padding:8px;border:1px solid var(--border)"><span class="warning-badge">要列印</span></td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)">學院美術館</td><td style="padding:8px;border:1px solid var(--border)">6/20 09:00</td><td style="padding:8px;border:1px solid var(--border)">€120 (每人€24)</td><td style="padding:8px;border:1px solid var(--border)"><span class="warning-badge">要列印</span></td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)">百花大教堂圓頂 (Brunelleschi Pass)</td><td style="padding:8px;border:1px solid var(--border)">6/19 09:00</td><td style="padding:8px;border:1px solid var(--border)">約€150 (每人€30)</td><td style="padding:8px;border:1px solid var(--border)"><span class="warning-badge" style="background:#e67e22">待訂</span> 必須線上預約</td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)">米蘭大教堂 Combo Lift</td><td style="padding:8px;border:1px solid var(--border)">6/22 09:00</td><td style="padding:8px;border:1px solid var(--border)">€130 (每人€26)</td><td style="padding:8px;border:1px solid var(--border)"><span class="warning-badge">要列印</span></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ====== ITINERARY ====== -->
+<div class="section" id="sec-itinerary">
+  <h2 class="section-title">每日行程</h2>
+
+  <input type="text" class="search-bar" placeholder="🔍 搜尋景點、餐廳..." oninput="searchItinerary(this.value)">
+
+  <!-- Day 0 -->
+  <div class="card day-card" data-search="出發 桃園機場 BR95">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <span class="day-badge city-travel">Day 0</span>
+      <h3>出發日</h3>
+      <span class="date">6/13 六</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline-item">
+        <div class="timeline-time">23:45</div>
+        <div class="timeline-title">台北桃園機場 T2 出發</div>
+        <div class="timeline-desc">搭乘 BR95 直飛米蘭，機上過夜</div>
+        <div class="timeline-tip">記得帶頸枕和眼罩</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 1 -->
+  <div class="card day-card" data-search="米蘭 Malpensa 高鐵 Siena 田野廣場 Piazza del Campo Palazzo Salimbeni Antica Trattoria Papei">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <span class="day-badge city-siena">Day 1</span>
+      <h3>漫長飛行後的托斯卡尼洗禮</h3>
+      <span class="date">6/14 日</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline-item">
+        <div class="timeline-time">07:35</div>
+        <div class="timeline-title">抵達米蘭 Malpensa 機場</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">09:00</div>
+        <div class="timeline-title">Malpensa Express → 米蘭中央車站</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:30</div>
+        <div class="timeline-title">紅箭高鐵 → 佛羅倫斯</div>
+        <div class="timeline-desc">Frecciarossa，約 1h40m-1h55m</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">13:30</div>
+        <div class="timeline-title">私家 Minivan 接送 → Siena</div>
+        <div class="timeline-desc">Booking 接送已訂，車程約 1h15m-1h30m</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">15:00</div>
+        <div class="timeline-title">Siena 飯店 Check-in</div>
+        <div class="timeline-desc">Loggia Senensis</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">16:00</div>
+        <div class="timeline-title">老城核心散步</div>
+        <div class="timeline-desc">Via Banchi di Sopra → Palazzo Tolomei → Chiesa di San Cristoforo</div>
+        <div class="timeline-tip">Siena 最熱鬧的主街，中世紀貴族豪宅一棟接一棟</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">17:00</div>
+        <div class="timeline-title">薩林貝尼宮 — 外觀拍照</div>
+        <div class="timeline-tip">世界最古老銀行 Monte dei Paschi di Siena（1472年），比哥倫布發現新大陸還早 20 年</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">18:00</div>
+        <div class="timeline-title">田野廣場（Piazza del Campo）</div>
+        <div class="timeline-tip">全世界最美的扇形廣場，坐在斜坡上看夕陽打在市政廳上是最奢侈的享受</div>
+      </div>
+      <div class="timeline-item meal">
+        <div class="timeline-time">19:00</div>
+        <div class="timeline-title">🍽 Antica Trattoria Papei</div>
+        <div class="timeline-desc">傳統托斯卡尼野味、手工麵</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="card day-card" data-search="Siena 主教座堂 Duomo Facciatone 曼吉亞塔樓 Torre del Mangia 購物 Drogheria Manganelli De miccoli Osteria Il Grattacielo">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <span class="day-badge city-siena">Day 2</span>
+      <h3>Siena 藝術巔峰與深度購物</h3>
+      <span class="date">6/15 一</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline-item meal">
+        <div class="timeline-time">09:00</div>
+        <div class="timeline-title">🥐 De miccoli antonio</div>
+        <div class="timeline-desc">買招牌帕尼尼當體力早餐</div>
+      </div>
+      <div class="timeline-item ticket">
+        <div class="timeline-time">10:00</div>
+        <div class="timeline-title">Siena 主教座堂區域 <span class="ticket-badge">需門票</span></div>
+        <div class="timeline-desc">主教座堂 + 博物館 + Facciatone 觀景台<br>建議購買 Opa Si Pass（全包票 ~€15-17）</div>
+        <div class="timeline-tip">黑白條紋大理石哥德式教堂，地板上 56 幅大理石鑲嵌畫；Facciatone 觀景台比曼吉亞塔樓人少很多</div>
+      </div>
+      <div class="timeline-item meal">
+        <div class="timeline-time">12:30</div>
+        <div class="timeline-title">🍽 Osteria Il Grattacielo</div>
+        <div class="timeline-desc">在地老牌草根餐館</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">13:30</div>
+        <div class="timeline-title">💤 回飯店午休</div>
+        <div class="timeline-desc">避開陽光與店家午休時段，至 15:30</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">16:00</div>
+        <div class="timeline-title">🛍 深度購物時間</div>
+        <div class="timeline-desc">Antica Drogheria Manganelli 1879（土產甜點）→ 陶藝品店 → 特色美食街</div>
+      </div>
+      <div class="timeline-item ticket">
+        <div class="timeline-time">18:30</div>
+        <div class="timeline-title">曼吉亞塔樓 <span class="ticket-badge">~€10</span></div>
+        <div class="timeline-desc">視體力決定是否登頂，400 階可俯瞰整座 Siena</div>
+        <div class="timeline-tip">102 公尺高、義大利第二高中世紀塔樓，塔名來自一位綽號「吃貨」的敲鐘人</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="card day-card" data-search="San Gimignano 水井廣場 Piazza della Cisterna Torre Grossa Gelateria Dondoli Bar Ristorante Boboli 聖多明我 梅迪奇要塞 Maria Pelletterie">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <span class="day-badge city-siena">Day 3</span>
+      <h3>San Gimignano 一日遊</h3>
+      <span class="date">6/16 二</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline-item">
+        <div class="timeline-time">09:30</div>
+        <div class="timeline-title">出發前往 San Gimignano</div>
+        <div class="timeline-desc">包車 Minivan，車程 40-50 分鐘</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:30</div>
+        <div class="timeline-title">水井廣場 → 主教座堂</div>
+        <div class="timeline-desc">Piazza della Cisterna → Duomo 賞壁畫（~€5）</div>
+        <div class="timeline-tip">中央有 1287 年古井，推門進教堂整面牆的中世紀濕壁畫會讓你震撼</div>
+      </div>
+      <div class="timeline-item ticket">
+        <div class="timeline-time">11:00</div>
+        <div class="timeline-title">Torre Grossa 塔樓登頂 <span class="ticket-badge">~€9</span></div>
+        <div class="timeline-desc">San Gimignano 唯一開放登頂的塔樓，全城最高 54 公尺</div>
+      </div>
+      <div class="timeline-item meal">
+        <div class="timeline-time">12:30</div>
+        <div class="timeline-title">🍽 Bar Ristorante Boboli</div>
+        <div class="timeline-desc">朝聖 Nana Tour</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">14:30</div>
+        <div class="timeline-title">🍦 Gelateria Dondoli</div>
+        <div class="timeline-desc">世界第一冰淇淋</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">15:00</div>
+        <div class="timeline-title">🛍 Maria's Pelletterie</div>
+        <div class="timeline-desc">珉奎同款包店</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">17:00</div>
+        <div class="timeline-title">返回 Siena → 聖多明我聖殿 → 梅迪奇要塞</div>
+        <div class="timeline-tip">聖多明我聖殿保存聖加大利納的頭顱聖髑；梅迪奇要塞有國家酒窖，傍晚在城牆上配紅酒看夕陽</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 4 -->
+  <div class="card day-card" data-search="佛羅倫斯 Santa Maria Novella 藥妝店 Officina Profumo Odeon Piazza della Repubblica 共和廣場 Pho Pho">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <span class="day-badge city-florence">Day 4</span>
+      <h3>跨城移動與藥妝巡禮</h3>
+      <span class="date">6/17 三</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline-item">
+        <div class="timeline-time">10:30</div>
+        <div class="timeline-title">Siena 退房 → 計程車 Van → 佛羅倫斯</div>
+        <div class="timeline-desc">Booking 接送已訂</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:00</div>
+        <div class="timeline-title">🏨 UNYCA 提早入住</div>
+      </div>
+      <div class="timeline-item meal">
+        <div class="timeline-time">12:30</div>
+        <div class="timeline-title">🍽 Osteria Gusto Toscano Steakhouse</div>
+        <div class="timeline-desc">住宿同條街上，步行 1 分鐘</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">14:00</div>
+        <div class="timeline-title">💤 回飯店午休（2小時）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">16:30</div>
+        <div class="timeline-title">🛍 Officina Profumo-Farmaceutica di Santa Maria Novella</div>
+        <div class="timeline-desc">世界最古老藥妝店（1612年），必買薔薇水、刺繡蠟塊</div>
+        <div class="timeline-tip">道明會修道士的草藥工坊，走進像教堂一樣華麗的店面就值得了</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">17:30</div>
+        <div class="timeline-title">📖 Odeon Cinema & Bookstore → 共和廣場</div>
+        <div class="timeline-desc">劇院改建書店 → Piazza della Repubblica 看旋轉木馬</div>
+      </div>
+      <div class="timeline-item meal">
+        <div class="timeline-time">19:30</div>
+        <div class="timeline-title">🍽 Pho Pho</div>
+        <div class="timeline-desc">清爽越式河粉，平衡抵達第一天的胃口</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 5 -->
+  <div class="card day-card" data-search="烏菲茲 Uffizi 領主廣場 Piazza della Signoria 刺繡郵票 Spazio Filatelia Via dei Calzaiuoli Osteria del Cinghiale Bianco">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <span class="day-badge city-florence">Day 5</span>
+      <h3>烏菲茲藝術 → 領主廣場 → 刺繡郵票</h3>
+      <span class="date">6/18 四</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline-item ticket">
+        <div class="timeline-time">08:30</div>
+        <div class="timeline-title">抵達烏菲茲安檢</div>
+      </div>
+      <div class="timeline-item ticket">
+        <div class="timeline-time">09:00-11:30</div>
+        <div class="timeline-title">🖼 烏菲茲美術館 <span class="ticket-badge">已訂 09:00</span></div>
+        <div class="timeline-desc">每人 €29，共 €145 | <span class="warning-badge">要列印門票</span></div>
+        <div class="timeline-tip">文藝復興最高殿堂：波提切利「維納斯的誕生」「春」、達文西「天使報喜」、米開朗基羅「聖家族」、卡拉瓦喬「美杜莎」</div>
+      </div>
+      <div class="timeline-item meal">
+        <div class="timeline-time">12:00</div>
+        <div class="timeline-title">🍽 Osteria del Cinghiale Bianco</div>
+        <div class="timeline-desc">跨過老橋即抵達，南岸知名老店</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">13:30</div>
+        <div class="timeline-title">🏛 領主廣場</div>
+        <div class="timeline-desc">欣賞舊宮、海神噴泉、露天雕塑群</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">14:30</div>
+        <div class="timeline-title">💤 回飯店休息（2小時）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">17:00</div>
+        <div class="timeline-title">✉ Spazio Filatelia Firenze — 限定刺繡郵票</div>
+        <div class="timeline-tip">用布繡出來的佛羅倫斯限定郵票，可實寄也可收藏，非常獨特又輕便的伴手禮</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">17:45</div>
+        <div class="timeline-title">🛍 Via dei Calzaiuoli 逛街</div>
+        <div class="timeline-desc">連結領主廣場與百花大教堂的名店街</div>
+      </div>
+      <div class="timeline-item meal">
+        <div class="timeline-time">19:00</div>
+        <div class="timeline-title">🍽 晚餐自由安排</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 6 -->
+  <div class="card day-card" data-search="百花大教堂 Brunelleschi Dome 圓頂 博物館 Ponte Vecchio 老橋 Giardino Bardini Babae 酒窗 Il Nutino Giulio Giannini Santo Spirito">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <span class="day-badge city-florence">Day 6</span>
+      <h3>百花圓頂 → 博物館 → 南岸花園</h3>
+      <span class="date">6/19 五</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline-item ticket">
+        <div class="timeline-time">09:00-10:30</div>
+        <div class="timeline-title">🏛 百花大教堂圓頂登頂 <span class="ticket-badge">需預約</span></div>
+        <div class="timeline-desc">463 階體力挑戰，沿途近距離看「最後的審判」壁畫</div>
+        <div class="timeline-tip">布魯內列斯基不用鷹架蓋出直徑 45 公尺穹頂，至今仍是世界最大磚造圓頂</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:30-11:15</div>
+        <div class="timeline-title">🖼 主教座堂博物館</div>
+        <div class="timeline-desc">室內冷氣強、有電梯沙發，看天堂之門真跡</div>
+        <div class="timeline-tip">吉伯提花了 27 年打造的「天堂之門」青銅浮雕真跡，米開朗基羅晚年未完成的聖殤像</div>
+      </div>
+      <div class="timeline-item meal">
+        <div class="timeline-time">11:30</div>
+        <div class="timeline-title">🍽 Il Nutino</div>
+        <div class="timeline-desc">Borgo S. Lorenzo, 39R，教堂旁步行 1 分鐘</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">13:00</div>
+        <div class="timeline-title">💤 回飯店休息（2小時）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">15:30</div>
+        <div class="timeline-title">Oltrarno 區深度探索</div>
+        <div class="timeline-desc">Ponte Vecchio 老橋 → Giulio Giannini 手工紙店 → 聖靈廣場</div>
+        <div class="timeline-tip">老橋是二戰唯一沒被炸掉的橋，16 世紀梅迪奇大公嫌肉販太臭改成金匠街</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">17:00</div>
+        <div class="timeline-title">✨ Giardino Bardini 巴爾迪尼花園</div>
+        <div class="timeline-tip">比波波利花園人少、花多、視野更好，六月的紫藤花和玫瑰正是最美時候</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">18:30</div>
+        <div class="timeline-title">🍷 Babae 酒窗體驗</div>
+        <div class="timeline-desc">南岸著名的紅酒窗口</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 7 -->
+  <div class="card day-card" data-search="學院美術館 Accademia 大衛像 中央市場 Mercato Centrale AquaFlor 聖十字 Santa Croce 洗禮堂 Trattoria Za Za 牛排 Vivoli">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <span class="day-badge city-florence">Day 7</span>
+      <h3>大衛像 → 中央市場 → 聖十字 → 牛排</h3>
+      <span class="date">6/20 六</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline-item ticket">
+        <div class="timeline-time">09:00-10:30</div>
+        <div class="timeline-title">🖼 學院美術館（大衛像）<span class="ticket-badge">已訂 09:00</span></div>
+        <div class="timeline-desc">每人 €24，共 €120 | <span class="warning-badge">要列印門票</span></div>
+        <div class="timeline-tip">5.17 公尺高的大理石巨人，從肌肉線條到手背浮起的血管都栩栩如生</div>
+      </div>
+      <div class="timeline-item meal">
+        <div class="timeline-time">11:00</div>
+        <div class="timeline-title">🍽 中央市場 Mercato Centrale</div>
+        <div class="timeline-desc">1 樓買松露、乾貨伴手禮；2 樓美食廣場自選餐點</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">13:00</div>
+        <div class="timeline-title">💤 回飯店休息（2小時）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">15:30</div>
+        <div class="timeline-title">🛍 AquaFlor Firenze</div>
+        <div class="timeline-desc">宮殿地窖手工香水店，老闆親自幫你調香</div>
+      </div>
+      <div class="timeline-item ticket">
+        <div class="timeline-time">16:30</div>
+        <div class="timeline-title">🏛 聖十字聖殿 → 洗禮堂</div>
+        <div class="timeline-desc">義大利「先賢祠」：米開朗基羅、伽利略、馬基維利長眠於此</div>
+      </div>
+      <div class="timeline-item meal">
+        <div class="timeline-time">18:30</div>
+        <div class="timeline-title">🍽 Trattoria Za Za — T-Bone 大牛排</div>
+        <div class="timeline-desc">托斯卡尼大牛排必吃！需預約</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">20:30</div>
+        <div class="timeline-title">🍦 Vivoli 老牌冰淇淋店</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 8 -->
+  <div class="card day-card" data-search="米蘭 高鐵 Duomo di Milano 米蘭大教堂 Galleria Vittorio Emanuele 拱廊 Navigli 運河 25 in Condotta">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <span class="day-badge city-milan">Day 8</span>
+      <h3>最終早餐 → 撤離前往米蘭</h3>
+      <span class="date">6/21 日</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline-item meal">
+        <div class="timeline-time">08:30</div>
+        <div class="timeline-title">🥐 25 in Condotta caffè bistrot</div>
+        <div class="timeline-desc">佛羅倫斯最後的高級早餐</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:00</div>
+        <div class="timeline-title">🏨 UNYCA 退房</div>
+        <div class="timeline-desc">搭計程車直達火車站</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">11:00</div>
+        <div class="timeline-title">🚄 高鐵前往米蘭</div>
+        <div class="timeline-desc">Frecciarossa 或 Italo，約 1h35m-1h55m</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">下午</div>
+        <div class="timeline-title">米蘭大教堂 外觀 + 拱廊散步</div>
+        <div class="timeline-desc">Duomo di Milano 外觀 → Galleria Vittorio Emanuele II</div>
+        <div class="timeline-tip">記得找地上公牛馬賽克，用腳跟在牠蛋蛋上轉三圈會帶來好運</div>
+      </div>
+      <div class="timeline-item meal">
+        <div class="timeline-time">傍晚</div>
+        <div class="timeline-title">🍷 Navigli 運河區</div>
+        <div class="timeline-desc">米蘭夜生活，Aperol Spritz 配免費小點心，體驗米蘭式 Aperitivo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 9 -->
+  <div class="card day-card" data-search="米蘭大教堂 Duomo Combo Lift 登頂 屋頂 自由行動">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <span class="day-badge city-milan">Day 9</span>
+      <h3>米蘭大教堂登頂與自由行動</h3>
+      <span class="date">6/22 一</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline-item ticket">
+        <div class="timeline-time">08:45</div>
+        <div class="timeline-title">抵達 GATE 2 LIGHT BLU 安檢</div>
+      </div>
+      <div class="timeline-item ticket">
+        <div class="timeline-time">09:00</div>
+        <div class="timeline-title">🏛 米蘭大教堂 Combo Lift <span class="ticket-badge">已訂 09:00</span></div>
+        <div class="timeline-desc">
+          每人 €26，共 €130<br>
+          <span class="warning-badge">要列印門票</span><br>
+          含：教堂內部 + 屋頂露台（電梯上、樓梯下）+ 博物館 + San Gottardo 教堂
+        </div>
+        <div class="timeline-tip">
+          ⚠ 服裝：不可穿短褲、背心、細肩帶、迷你裙<br>
+          ⚠ 不可帶大型行李<br>
+          ⚠ 教堂與露台上無廁所，先上完再進場
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">下午</div>
+        <div class="timeline-title">自由行動</div>
+        <div class="timeline-desc">依個人喜好安排，整理行李準備回程</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 10 -->
+  <div class="card day-card" data-search="回家 機場 Malpensa BR96 退稅">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <span class="day-badge city-travel">Day 10</span>
+      <h3>回家</h3>
+      <span class="date">6/23 二</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline-item">
+        <div class="timeline-time">07:30</div>
+        <div class="timeline-title">出發前往 Malpensa 機場</div>
+        <div class="timeline-desc">
+          選項 A：Malpensa Express（52 分鐘，€15/人）<br>
+          選項 B：機場巴士（50 分鐘，€10/人）<br>
+          選項 C：包車（約 €110）
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">09:00</div>
+        <div class="timeline-title">抵達機場，辦理報到、退稅</div>
+        <div class="timeline-tip">退稅商品先不要託運！海關可能查看商品</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">11:15</div>
+        <div class="timeline-title">✈ BR96 起飛，直飛台北</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">+1 天 06:05</div>
+        <div class="timeline-title">抵達台北桃園機場 T2</div>
+        <div class="timeline-desc">旅程結束！</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== GUIDES ====== -->
+<div class="section" id="sec-guides">
+  <h2 class="section-title">導覽手冊</h2>
+  <p style="color:var(--text-light);margin-bottom:20px">點擊卡片查看詳細導覽</p>
+
+  <div class="guide-grid">
+
+    <div class="guide-card" onclick="openGuide('uffizi')">
+      <div class="guide-card-top">
+        <span class="city-tag" style="background:var(--florence)">佛羅倫斯</span>
+        <span class="city-tag" style="background:var(--gold)">Day 5</span>
+        <h3>🖼 烏菲茲美術館精華攻略</h3>
+        <div class="meta">2.5-3 小時精華路線 | 6/18 09:00 入場</div>
+      </div>
+    </div>
+
+    <div class="guide-card" onclick="openGuide('accademia')">
+      <div class="guide-card-top">
+        <span class="city-tag" style="background:var(--florence)">佛羅倫斯</span>
+        <span class="city-tag" style="background:var(--gold)">Day 7</span>
+        <h3>🗿 學院美術館（大衛像）</h3>
+        <div class="meta">1.5 小時完整導覽 | 6/20 09:00 入場</div>
+      </div>
+    </div>
+
+    <div class="guide-card" onclick="openGuide('duomo-florence')">
+      <div class="guide-card-top">
+        <span class="city-tag" style="background:var(--florence)">佛羅倫斯</span>
+        <span class="city-tag" style="background:var(--gold)">Day 6</span>
+        <h3>⛪ 百花大教堂</h3>
+        <div class="meta">穹頂+博物館+教堂 約 3 小時 | 6/19</div>
+      </div>
+    </div>
+
+    <div class="guide-card" onclick="openGuide('santa-croce')">
+      <div class="guide-card-top">
+        <span class="city-tag" style="background:var(--florence)">佛羅倫斯</span>
+        <span class="city-tag" style="background:var(--gold)">Day 7</span>
+        <h3>⛪ 聖十字聖殿</h3>
+        <div class="meta">義大利的先賢祠 | 6/20 下午</div>
+      </div>
+    </div>
+
+    <div class="guide-card" onclick="openGuide('siena-duomo')">
+      <div class="guide-card-top">
+        <span class="city-tag" style="background:var(--siena)">Siena</span>
+        <span class="city-tag" style="background:var(--gold)">Day 2</span>
+        <h3>⛪ Siena 主教座堂</h3>
+        <div class="meta">含博物館、Facciatone 觀景台 | 6/15</div>
+      </div>
+    </div>
+
+    <div class="guide-card" onclick="openGuide('san-gimignano')">
+      <div class="guide-card-top">
+        <span class="city-tag" style="background:var(--siena)">San Gimignano</span>
+        <span class="city-tag" style="background:var(--gold)">Day 3</span>
+        <h3>🏰 San Gimignano 一日遊</h3>
+        <div class="meta">中世紀曼哈頓 | 6/16</div>
+      </div>
+    </div>
+
+    <div class="guide-card" onclick="openGuide('milan-duomo')">
+      <div class="guide-card-top">
+        <span class="city-tag" style="background:var(--milan)">米蘭</span>
+        <span class="city-tag" style="background:var(--gold)">Day 9</span>
+        <h3>⛪ 米蘭大教堂</h3>
+        <div class="meta">Combo Lift 含登頂 | 6/22 09:00</div>
+      </div>
+    </div>
+
+    <div class="guide-card" onclick="openGuide('spots')">
+      <div class="guide-card-top">
+        <span class="city-tag" style="background:var(--primary)">全程</span>
+        <h3>📍 景點簡介速查表</h3>
+        <div class="meta">39 個景點一句話速查</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====== TRANSPORT ====== -->
+<div class="section" id="sec-transport">
+  <h2 class="section-title">交通資訊</h2>
+
+  <div style="overflow-x:auto;margin-bottom:24px">
+    <table class="transport-table">
+      <tr>
+        <th>日期</th><th>路線</th><th>交通方式</th><th>車程</th><th>狀態</th>
+      </tr>
+      <tr>
+        <td>6/14</td><td>MXP → Milano Centrale</td><td>Malpensa Express</td><td>52 分</td><td class="status-pending">待訂（可當天買）</td>
+      </tr>
+      <tr>
+        <td>6/14</td><td>Milano Centrale → Firenze SMN</td><td>Frecciarossa 高鐵</td><td>1h40m</td><td class="status-pending">待訂（盡早買）</td>
+      </tr>
+      <tr>
+        <td>6/14</td><td>Firenze SMN → Siena</td><td>Booking 接送 Van</td><td>1h15m</td><td class="status-booked">✓ 已訂</td>
+      </tr>
+      <tr>
+        <td>6/16</td><td>Siena ↔ San Gimignano</td><td>包車 Minivan</td><td>單程 40-50 分</td><td class="status-pending">待訂（問房東）</td>
+      </tr>
+      <tr>
+        <td>6/17</td><td>Siena → 佛羅倫斯</td><td>Booking 接送 Van</td><td>1h15m</td><td class="status-booked">✓ 已訂</td>
+      </tr>
+      <tr>
+        <td>6/21</td><td>UNYCA → Firenze SMN</td><td>計程車 Van</td><td>5-10 分</td><td>當天叫車</td>
+      </tr>
+      <tr>
+        <td>6/21</td><td>Firenze SMN → Milano Centrale</td><td>高鐵</td><td>1h35m</td><td class="status-pending">待訂（盡早買）</td>
+      </tr>
+      <tr>
+        <td>6/23</td><td>米蘭住宿 → Milano Centrale</td><td>計程車/地鐵</td><td>10-20 分</td><td>當天安排</td>
+      </tr>
+      <tr>
+        <td>6/23</td><td>Milano Centrale → MXP</td><td>Malpensa Express</td><td>52 分</td><td class="status-pending">待訂（可當天買）</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card open">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <h3>💡 搭車小提醒</h3>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li><strong>高鐵電子票</strong>：QR Code 截圖存手機相簿，備列印一份</li>
+        <li><strong>月台資訊</strong>：發車前 15-20 分鐘才會顯示</li>
+        <li><strong>行李</strong>：提早 10 分鐘上車搶行李架位置</li>
+        <li><strong>打票</strong>：高鐵不用打票；搭區間車（Regionale）才需要在黃色機器打票</li>
+        <li><strong>信用卡</strong>：售票機主要接受 Visa / Mastercard，JCB 不一定能用</li>
+        <li><strong>PIN 碼</strong>：售票機刷卡可能要求 4 位數 PIN 碼（預借現金密碼），出發前向銀行確認</li>
+        <li><strong>罷工查詢</strong>：出發前一天查 Trenitalia 官網確認有無罷工</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="arrow">&#9654;</span>
+      <h3>📞 重要地址與電話</h3>
+    </div>
+    <div class="card-body">
+      <table style="width:100%;border-collapse:collapse;font-size:0.9em">
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>Siena 住宿</strong></td><td style="padding:8px;border:1px solid var(--border)">Loggia Senensis（地址請查群組）</td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>佛羅倫斯住宿</strong></td><td style="padding:8px;border:1px solid var(--border)">UNYCA（地址請查群組）</td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>佛羅倫斯計程車</strong></td><td style="padding:8px;border:1px solid var(--border)">+39 055 4242 / +39 055 4390</td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>Siena 計程車</strong></td><td style="padding:8px;border:1px solid var(--border)">+39 0577 49222</td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>米蘭計程車</strong></td><td style="padding:8px;border:1px solid var(--border)">+39 02 4040 / +39 02 6969</td></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)"><strong>叫車 App</strong></td><td style="padding:8px;border:1px solid var(--border)">it Taxi（官方）/ Free Now</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ====== ETIQUETTE ====== -->
+<div class="section" id="sec-etiquette">
+  <h2 class="section-title">文化禮儀指南</h2>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab(this,'etq-dining')">餐飲</button>
+    <button class="tab" onclick="showTab(this,'etq-social')">社交</button>
+    <button class="tab" onclick="showTab(this,'etq-church')">教堂</button>
+    <button class="tab" onclick="showTab(this,'etq-shopping')">購物</button>
+    <button class="tab" onclick="showTab(this,'etq-safety')">安全</button>
+    <button class="tab" onclick="showTab(this,'etq-phrases')">義大利文</button>
+  </div>
+
+  <!-- Dining -->
+  <div class="tab-content active" id="etq-dining">
+    <div class="etiquette-card">
+      <h3>🕐 用餐時間</h3>
+      <table style="width:100%;border-collapse:collapse;font-size:0.9em;margin:10px 0">
+        <tr><td style="padding:6px;border:1px solid var(--border)"><strong>早餐</strong></td><td style="padding:6px;border:1px solid var(--border)">7:00-10:00</td><td style="padding:6px;border:1px solid var(--border)">就是咖啡+可頌，不要期待熱食自助吧</td></tr>
+        <tr><td style="padding:6px;border:1px solid var(--border)"><strong>午餐</strong></td><td style="padding:6px;border:1px solid var(--border)">12:30-14:30</td><td style="padding:6px;border:1px solid var(--border)">12:00 去可能還沒開門</td></tr>
+        <tr><td style="padding:6px;border:1px solid var(--border)"><strong>晚餐</strong></td><td style="padding:6px;border:1px solid var(--border)">19:30-21:30</td><td style="padding:6px;border:1px solid var(--border)">18:00 吃會被當異類</td></tr>
+      </table>
+      <p style="font-size:0.9em;color:var(--accent)">⚠ 15:00-18:00 幾乎找不到正餐！餐廳關門休息。</p>
+    </div>
+
+    <div class="etiquette-card">
+      <h3>☕ 咖啡文化</h3>
+      <div class="do-dont">
+        <div class="do-item">✅ 餐後點 espresso（un caffe）</div>
+        <div class="dont-item">❌ 午/晚餐後點 Cappuccino</div>
+        <div class="do-item">✅ 站著喝（€1.2-1.8）更便宜</div>
+        <div class="dont-item">❌ 說 "un latte"（會得到純牛奶）</div>
+        <div class="do-item">✅ 想要拿鐵說 "caffe latte"</div>
+        <div class="dont-item">❌ 期待免費的「美式咖啡」</div>
+      </div>
+    </div>
+
+    <div class="etiquette-card">
+      <h3>🍝 不要對義大利麵做的事</h3>
+      <div class="do-dont">
+        <div class="dont-item">❌ 加番茄醬 — 最大侮辱</div>
+        <div class="dont-item">❌ 用湯匙捲麵 — 被認為是小孩子</div>
+        <div class="dont-item">❌ 海鮮麵加起司 — 禁忌組合</div>
+        <div class="do-item">✅ 只用叉子就好</div>
+      </div>
+    </div>
+
+    <div class="etiquette-card">
+      <h3>💰 Coperto 座位費</h3>
+      <p>帳單上的 "coperto"（€2-4/人）是<strong>合法的座位費與麵包費</strong>，不是被坑！</p>
+    </div>
+
+    <div class="etiquette-card">
+      <h3>👛 小費 & 帳單</h3>
+      <p>義大利<strong>不需要給小費</strong>。服務好的話桌上留 €1-2 零錢就夠了。</p>
+      <p style="color:var(--accent);font-size:0.9em">⚠ 5 人團體不要要求分開付帳，一人先統一付再私下分帳。</p>
+    </div>
+
+    <div class="etiquette-card">
+      <h3>🍷 Aperitivo 文化（Day 8 Navigli）</h3>
+      <p>下午 6-9 點點一杯酒（€8-12）通常附贈自助式小點心。推薦：Aperol Spritz（橘色微甜最入門）、Negroni。</p>
+    </div>
+  </div>
+
+  <!-- Social -->
+  <div class="tab-content" id="etq-social">
+    <div class="etiquette-card">
+      <h3>👋 進店必打招呼</h3>
+      <p>進入任何店面說 <strong>"Buongiorno"</strong>（日安）或 <strong>"Buonasera"</strong>（下午4-5點後）。離開說 <strong>"Grazie, arrivederci"</strong>。不打招呼會被認為非常沒禮貌！</p>
+    </div>
+    <div class="etiquette-card">
+      <h3>🍻 敬酒禮儀</h3>
+      <p>舉杯時<strong>要看著對方的眼睛</strong>，不看據說會帶來七年壞運氣。</p>
+    </div>
+    <div class="etiquette-card">
+      <h3>💬 聊天地雷</h3>
+      <ul>
+        <li>不要拿南北義大利開玩笑</li>
+        <li>不要在 Siena 大力讚美佛羅倫斯（歷史宿敵）</li>
+        <li>不要在米蘭人面前誇尤文圖斯</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Church -->
+  <div class="tab-content" id="etq-church">
+    <div class="etiquette-card">
+      <h3>👔 服裝規定（超級重要！）</h3>
+      <div class="do-dont">
+        <div class="do-item">✅ 遮蓋肩膀</div>
+        <div class="dont-item">❌ 背心、細肩帶</div>
+        <div class="do-item">✅ 裙/褲過膝</div>
+        <div class="dont-item">❌ 短褲、短裙</div>
+        <div class="do-item">✅ 帶薄絲巾罩衫</div>
+        <div class="dont-item">❌ 穿拖鞋</div>
+      </div>
+      <p style="margin-top:10px;font-size:0.9em;color:var(--accent)">⚠ 六月很熱但規定不放寬，不合格直接被擋在外面！男生也一樣，短褲進不去！</p>
+    </div>
+    <div class="etiquette-card">
+      <h3>📸 教堂內行為</h3>
+      <ul>
+        <li>不要大聲說話</li>
+        <li>禁止閃光燈，部分區域完全禁止拍照</li>
+        <li>彌撒時間不開放觀光</li>
+        <li>不要觸摸任何文物</li>
+        <li>男性進教堂要脫帽</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Shopping -->
+  <div class="tab-content" id="etq-shopping">
+    <div class="etiquette-card">
+      <h3>😴 午休文化 Riposo</h3>
+      <p>很多小店 <strong>13:00-15:30</strong> 關門午休！Siena 和 San Gimignano 特別明顯。</p>
+    </div>
+    <div class="etiquette-card">
+      <h3>🧾 退稅 Tax Free</h3>
+      <p>同一店家同一天消費滿 <strong>€70.01</strong> 可退稅 12-15.5%。</p>
+      <ol>
+        <li>購物時出示<strong>護照</strong>索取退稅單</li>
+        <li>離開歐盟最後一個機場（米蘭 Malpensa）到海關蓋章</li>
+        <li><strong>退稅商品先不要託運！</strong>海關可能查看</li>
+        <li>蓋章後到退稅公司窗口領取退款</li>
+      </ol>
+    </div>
+    <div class="etiquette-card">
+      <h3>💵 付款注意</h3>
+      <ul>
+        <li>大部分地方可刷卡，但帶一些現金備用</li>
+        <li>不要拿 €50 大鈔買 €1.5 咖啡，店家臉會很臭</li>
+        <li>正規商店不殺價</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Safety -->
+  <div class="tab-content" id="etq-safety">
+    <div class="etiquette-card">
+      <h3>🔒 防扒竊 — 最重要！</h3>
+      <p><strong>常見手法：</strong></p>
+      <ul>
+        <li>假好心：幫拍照、撿東西、給玫瑰花手環 → 索費</li>
+        <li>分散注意力：搭話或拿報紙擋住你，同伴下手</li>
+        <li>擠公車/地鐵時趁人多偷</li>
+        <li>廣場附近小孩群圍過來乞討順便偷</li>
+      </ul>
+      <p style="margin-top:10px"><strong>防範：</strong></p>
+      <ul>
+        <li>背包背前面，拉鍊朝身體</li>
+        <li>護照大額現金放貼身腰包</li>
+        <li>手機不放後口袋</li>
+        <li>陌生人接近就說 "No, grazie" 走開</li>
+        <li>不要在路上簽任何東西</li>
+      </ul>
+    </div>
+    <div class="etiquette-card">
+      <h3>🚨 緊急電話</h3>
+      <div class="emergency-grid">
+        <div class="emergency-card">
+          <div>歐洲通用緊急電話</div>
+          <div class="phone">112</div>
+        </div>
+        <div class="emergency-card">
+          <div>急救 / 救護車</div>
+          <div class="phone">118</div>
+        </div>
+        <div class="emergency-card">
+          <div>駐義大利台北代表處</div>
+          <div class="phone" style="font-size:1em">+39 06 9826 2800</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Italian phrases -->
+  <div class="tab-content" id="etq-phrases">
+    <table class="phrase-table">
+      <tr><th>情境</th><th>義大利文</th><th>發音</th></tr>
+      <tr><td>你好（白天）</td><td class="italian">Buongiorno</td><td>bwon-JOUR-no</td></tr>
+      <tr><td>你好（下午後）</td><td class="italian">Buonasera</td><td>bwon-na-SEH-ra</td></tr>
+      <tr><td>謝謝</td><td class="italian">Grazie</td><td>GRAH-tsee-eh</td></tr>
+      <tr><td>不用了謝謝</td><td class="italian">No, grazie</td><td>No, GRAH-tsee-eh</td></tr>
+      <tr><td>請/不客氣</td><td class="italian">Prego</td><td>PREH-go</td></tr>
+      <tr><td>對不起/借過</td><td class="italian">Scusi / Permesso</td><td>SKOO-zee / per-MEH-so</td></tr>
+      <tr><td>買單</td><td class="italian">Il conto, per favore</td><td>il KON-to, per fa-VO-reh</td></tr>
+      <tr><td>一杯咖啡</td><td class="italian">Un caffe, per favore</td><td>oon ka-FEH, per fa-VO-reh</td></tr>
+      <tr><td>多少錢？</td><td class="italian">Quanto costa?</td><td>KWAN-to KOS-ta?</td></tr>
+      <tr><td>廁所在哪？</td><td class="italian">Dov'e il bagno?</td><td>do-VEH il BA-nyo?</td></tr>
+      <tr><td>可以拍照嗎？</td><td class="italian">Posso fare una foto?</td><td>POS-so FA-reh OO-na FO-to?</td></tr>
+      <tr><td>救命</td><td class="italian">Aiuto!</td><td>ah-YOO-to!</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ====== PRACTICAL ====== -->
+<div class="section" id="sec-practical">
+  <h2 class="section-title">實用資訊</h2>
+
+  <div class="etiquette-card">
+    <h3>🔌 插座與電壓</h3>
+    <p>義大利使用 <strong>Type L / Type C 插座</strong>（圓孔），台灣扁頭插頭無法直接使用，需帶<strong>轉接頭</strong>。電壓 220V，手機/筆電充電器通常是國際電壓（100-240V）沒問題，但吹風機等電熱產品可能不適用。</p>
+  </div>
+
+  <div class="etiquette-card">
+    <h3>🚰 飲水</h3>
+    <p>義大利自來水可以直接喝。街頭飲水噴泉（fontanelle）也是乾淨飲用水。用手指堵住下方出水口，水會從上方小孔噴出來方便你直接喝。餐廳的水要另外點（€2-3）。</p>
+  </div>
+
+  <div class="etiquette-card">
+    <h3>🚻 廁所</h3>
+    <p>公廁通常要投幣（€0.50-1.00）。最佳策略：在咖啡吧喝杯 espresso（€1-2）順便用廁所。記得帶衛生紙和零錢。</p>
+  </div>
+
+  <div class="etiquette-card">
+    <h3>☀ 六月天氣穿著</h3>
+    <ul>
+      <li>30-35°C，日照極強 → SPF 50 防曬必備</li>
+      <li>帽子+太陽眼鏡是必需品</li>
+      <li>教堂老建築通常沒冷氣 → 帶摺疊扇</li>
+      <li>每天步行 15,000-20,000 步 → 穿好走鞋</li>
+      <li>隨身帶薄罩衫（防曬+教堂服裝一石二鳥）</li>
+    </ul>
+  </div>
+
+  <div class="etiquette-card">
+    <h3>🛂 護照提醒</h3>
+    <ul>
+      <li>台灣護照免申根簽證 90 天</li>
+      <li>護照有效期要超過 2026/9/23（離開日+3 個月）</li>
+      <li>隨身帶護照影本或手機存掃描檔</li>
+      <li>購物退稅需要護照正本</li>
+    </ul>
+  </div>
+
+  <div class="etiquette-card">
+    <h3>🏪 Tabacchi 菸草店萬能</h3>
+    <p>認明藍底白色大 T 招牌。可買：公車票、郵票、儲值卡、彩券、零食。</p>
+  </div>
+
+  <h3 style="margin:30px 0 16px">📋 行前待辦清單</h3>
+
+  <div id="checklist">
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 預訂 6/14 米蘭→佛羅倫斯高鐵票</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 預訂 6/21 佛羅倫斯→米蘭高鐵票</div>
+    <div class="checklist-item checked" onclick="toggleCheck(this)"><input type="checkbox" checked> 預訂 6/14 佛羅倫斯→Siena Booking 接送 ✓</div>
+    <div class="checklist-item checked" onclick="toggleCheck(this)"><input type="checkbox" checked> 預訂 6/17 Siena→佛羅倫斯 Booking 接送 ✓</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 確認 6/16 San Gimignano 交通（問房東）</div>
+    <div class="checklist-item checked" onclick="toggleCheck(this)"><input type="checkbox" checked> 預約烏菲茲美術館門票 ✓ 6/18 09:00</div>
+    <div class="checklist-item checked" onclick="toggleCheck(this)"><input type="checkbox" checked> 預約學院美術館門票 ✓ 6/20 09:00</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 預約百花大教堂圓頂登頂（必須線上預約）</div>
+    <div class="checklist-item checked" onclick="toggleCheck(this)"><input type="checkbox" checked> 預約米蘭大教堂 Combo Lift ✓ 6/22 09:00</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 購買義大利 eSIM</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 確認護照效期（需至少到 2026/9/23）</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 準備旅平險</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 確認信用卡海外刷卡功能開通</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 確認信用卡 PIN 碼（預借現金密碼）</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 下載離線地圖（Google Maps 義大利）</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 下載 Trenitalia / Italo App</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 列印門票（烏菲茲、學院美術館、米蘭大教堂）</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 準備轉接頭</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 帶薄罩衫/絲巾（教堂用）</div>
+  </div>
+</div>
+
+<!-- ====== COSTS ====== -->
+<div class="section" id="sec-costs">
+  <h2 class="section-title">費用總覽</h2>
+
+  <div class="cost-summary">
+    <h3 style="margin-bottom:12px">🏨 住宿費用（5人均分）</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:0.9em">
+      <tr><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">住宿</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">總價</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">每人</th></tr>
+      <tr><td style="padding:8px;border:1px solid var(--border)">Siena 3晚</td><td style="padding:8px;border:1px solid var(--border)">TWD 41,145</td><td style="padding:8px;border:1px solid var(--border)">TWD 8,229</td></tr>
+      <tr><td style="padding:8px;border:1px solid var(--border)">佛羅倫斯 4晚</td><td style="padding:8px;border:1px solid var(--border)">TWD 48,824</td><td style="padding:8px;border:1px solid var(--border)">TWD 9,765</td></tr>
+      <tr><td style="padding:8px;border:1px solid var(--border)">米蘭 2晚</td><td style="padding:8px;border:1px solid var(--border)">TWD 27,248</td><td style="padding:8px;border:1px solid var(--border)">TWD 5,450</td></tr>
+      <tr style="font-weight:700"><td style="padding:8px;border:1px solid var(--border)">住宿小計</td><td style="padding:8px;border:1px solid var(--border)">TWD 117,217</td><td style="padding:8px;border:1px solid var(--border)">TWD 23,443</td></tr>
+    </table>
+  </div>
+
+  <div class="cost-summary">
+    <h3 style="margin-bottom:12px">🎫 已訂門票</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:0.9em">
+      <tr><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">景點</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">5人總價</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">每人</th></tr>
+      <tr><td style="padding:8px;border:1px solid var(--border)">烏菲茲美術館</td><td style="padding:8px;border:1px solid var(--border)">€145</td><td style="padding:8px;border:1px solid var(--border)">€29</td></tr>
+      <tr><td style="padding:8px;border:1px solid var(--border)">學院美術館</td><td style="padding:8px;border:1px solid var(--border)">€120</td><td style="padding:8px;border:1px solid var(--border)">€24</td></tr>
+      <tr><td style="padding:8px;border:1px solid var(--border)">米蘭大教堂</td><td style="padding:8px;border:1px solid var(--border)">€130</td><td style="padding:8px;border:1px solid var(--border)">€26</td></tr>
+      <tr style="font-weight:700"><td style="padding:8px;border:1px solid var(--border)">門票小計</td><td style="padding:8px;border:1px solid var(--border)">€395</td><td style="padding:8px;border:1px solid var(--border)">€79</td></tr>
+    </table>
+  </div>
+
+  <div class="cost-summary">
+    <h3 style="margin-bottom:12px">🚄 交通費用概估</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:0.9em">
+      <tr><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">項目</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">5人總價(EUR)</th></tr>
+      <tr><td style="padding:8px;border:1px solid var(--border)">全程交通合計概估</td><td style="padding:8px;border:1px solid var(--border)">€755 ~ €1,250</td></tr>
+      <tr style="font-weight:700"><td style="padding:8px;border:1px solid var(--border)">每人交通概估</td><td style="padding:8px;border:1px solid var(--border)">€151 ~ €250</td></tr>
+    </table>
+    <div class="cost-total">每人住宿+門票+交通概估：約 TWD 23,443 + €230 ≈ TWD 31,900</div>
+    <p style="font-size:0.85em;color:var(--text-light);text-align:center;margin-top:8px">（不含機票、餐飲、購物、其他門票）</p>
+  </div>
+</div>
+
+<!-- Modal for guides -->
+<div class="modal-overlay" id="guideModal" onclick="closeGuideOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">導覽手冊</h2>
+      <button class="modal-close" onclick="closeGuide()">&times;</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- Footer -->
+<div class="footer">
+  2026 義大利之旅 | 5 人同行 | 6/13 - 6/24<br>
+  台北 ✈ 米蘭 → Siena → 佛羅倫斯 → 米蘭 ✈ 台北
+</div>
+
+<script>
+// Section navigation
+function showSection(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Card toggle
+function toggleCard(header) {
+  header.closest('.card').classList.toggle('open');
+}
+
+// Tab toggle
+function showTab(btn, id) {
+  const parent = btn.closest('.section') || document.body;
+  parent.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  parent.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+// Search itinerary
+function searchItinerary(query) {
+  const q = query.toLowerCase();
+  document.querySelectorAll('.day-card').forEach(card => {
+    const text = (card.dataset.search + ' ' + card.textContent).toLowerCase();
+    card.style.display = q === '' || text.includes(q) ? '' : 'none';
+    if (q !== '' && text.includes(q)) card.classList.add('open');
+  });
+}
+
+// Checklist toggle
+function toggleCheck(item) {
+  const cb = item.querySelector('input[type="checkbox"]');
+  cb.checked = !cb.checked;
+  item.classList.toggle('checked', cb.checked);
+  saveChecklist();
+}
+
+function saveChecklist() {
+  const states = [];
+  document.querySelectorAll('.checklist-item input').forEach(cb => states.push(cb.checked));
+  try { localStorage.setItem('italy2026-checklist', JSON.stringify(states)); } catch(e) {}
+}
+
+function loadChecklist() {
+  try {
+    const states = JSON.parse(localStorage.getItem('italy2026-checklist'));
+    if (states) {
+      document.querySelectorAll('.checklist-item').forEach((item, i) => {
+        if (states[i] !== undefined) {
+          item.querySelector('input').checked = states[i];
+          item.classList.toggle('checked', states[i]);
+        }
+      });
+    }
+  } catch(e) {}
+}
+
+// Scroll to top button
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').style.display = window.scrollY > 300 ? 'block' : 'none';
+});
+
+// Guide modals
+const guideContent = {
+  uffizi: {
+    title: '🖼 烏菲茲美術館精華攻略',
+    html: `
+      <div class="highlight-box"><strong>日期</strong>：6/18（四）| <strong>安檢</strong>：08:30 | <strong>入場</strong>：09:00 | <strong>離開</strong>：目標 11:40</div>
+      <h3>核心策略</h3>
+      <p>08:30 到場排安檢，09:00 入場。08:15 第一批已推進到波提切利廳，09:30 大批團客尚未進場——我們正好卡在最佳夾縫時間。</p>
+      <h3>精華動線時間表</h3>
+      <table>
+        <tr><th>時間</th><th>展廳</th><th>必看作品</th><th>停留</th></tr>
+        <tr><td>09:05</td><td>第 2 室</td><td>喬托《聖母登極》+ 三幅對比</td><td>10 min</td></tr>
+        <tr><td>09:20</td><td>第 7-8 室</td><td>烏切洛、皮耶羅、利皮</td><td>10 min</td></tr>
+        <tr><td><strong>09:30</strong></td><td><strong>第 10-14 室</strong></td><td><strong>《維納斯的誕生》《春》</strong></td><td><strong>30 min</strong></td></tr>
+        <tr><td><strong>10:00</strong></td><td><strong>A35 室</strong></td><td><strong>達文西《天使報喜》</strong></td><td><strong>20 min</strong></td></tr>
+        <tr><td><strong>10:20</strong></td><td><strong>A38 室</strong></td><td><strong>米開朗基羅《聖家族》、拉斐爾《金翅雀聖母》</strong></td><td><strong>25 min</strong></td></tr>
+        <tr><td>10:45</td><td>陽台咖啡廳</td><td>拍照+廁所+集合</td><td>15 min</td></tr>
+        <tr><td><strong>11:00</strong></td><td><strong>第 83 室</strong></td><td><strong>提香《烏爾比諾的維納斯》</strong></td><td><strong>15 min</strong></td></tr>
+        <tr><td><strong>11:15</strong></td><td><strong>第 90 室</strong></td><td><strong>卡拉瓦喬《美杜莎》《酒神》</strong></td><td><strong>20 min</strong></td></tr>
+        <tr><td>11:40</td><td>出口</td><td>→ 領主廣場</td><td>-</td></tr>
+      </table>
+      <h3>五星鎮館之寶（共 8 件）</h3>
+      <ol>
+        <li><strong>《維納斯的誕生》</strong>（波提切利）— 貝殼上的女神，先站遠看整體再走近看髮絲、花瓣</li>
+        <li><strong>《春》</strong>（波提切利）— 從右往左「閱讀」，近 200 種真實植物</li>
+        <li><strong>《天使報喜》</strong>（達文西）— 從畫的右側蹲低看聖母右手比例就正確了</li>
+        <li><strong>《聖家族》</strong>（米開朗基羅）— 他唯一完成的木板畫！買家砍價被翻倍</li>
+        <li><strong>《金翅雀聖母》</strong>（拉斐爾）— 地震碎 17 片後修復的完美三角構圖</li>
+        <li><strong>《烏爾比諾的維納斯》</strong>（提香）— 直視觀眾的眼神，和波提切利維納斯差 50 年</li>
+        <li><strong>《美杜莎》</strong>（卡拉瓦喬）— 凸面盾牌上的自畫像</li>
+        <li><strong>《酒神巴克斯》</strong>（卡拉瓦喬）— 對你舉杯，水果籃裡藏著衰敗</li>
+      </ol>
+      <div class="tip-box"><strong>人潮應對</strong>：波提切利廳人太多？先跳去 A35 達文西廳，30 分鐘後回來。</div>
+      <div class="warn-box"><strong>注意</strong>：禁止閃光燈、禁止自拍棒。穿舒適的鞋，注意隨身物品安全。</div>
+    `
+  },
+  accademia: {
+    title: '🗿 學院美術館 — 大衛像',
+    html: `
+      <div class="highlight-box"><strong>日期</strong>：6/20（六）| <strong>入場</strong>：09:00 | <strong>時長</strong>：約 1.5 小時 | <strong>票價</strong>：每人 €24</div>
+      <h3>大衛像（1501-1504）— 米開朗基羅</h3>
+      <p>5.17 公尺高、約 5,560 公斤重。26 歲的米開朗基羅從一塊被閒置近 35 年的「廢料大理石」中，雕出人類藝術史上最完美的男性軀體。</p>
+      <h3>必看的七個角度</h3>
+      <ol>
+        <li><strong>正面遠距離（走廊盡頭 20m 外）</strong> — 先感受壓迫性的存在感</li>
+        <li><strong>左側 45 度角</strong> — 公認最佳觀賞角度：緊繃頸部、投石帶弧線、蓄勢待發的肌肉</li>
+        <li><strong>右手特寫</strong> — 手背上突起的青筋血管、指關節骨骼紋理</li>
+        <li><strong>頭部側面</strong> — 頭和手比例偏大是「刻意變形」（原設計放在教堂高處）</li>
+        <li><strong>背面</strong> — 脊椎線條流暢，contrapposto 對立式站姿的 S 型曲線</li>
+        <li><strong>雙眼近距離</strong> — 瞳孔裡有心形凹痕，模擬真實眼睛反光</li>
+        <li><strong>腳踝與底座</strong> — 右腳承重、左腳腳尖輕觸，即將邁步的動態感</li>
+      </ol>
+      <h3>建議動線</h3>
+      <table>
+        <tr><th>時間</th><th>內容</th></tr>
+        <tr><td>09:00-09:10</td><td>右側畫作展廳快速瀏覽</td></tr>
+        <tr><td>09:10-09:30</td><td>囚徒廊道 — 四尊未完成雕塑，感受「掙脫」的意象</td></tr>
+        <tr><td>09:30-10:00</td><td><strong>大衛像！至少 30 分鐘，按七個角度觀賞</strong></td></tr>
+        <tr><td>10:00-10:10</td><td>《掠奪薩賓婦女》石膏原型（記得繞一圈 360 度）</td></tr>
+        <tr><td>10:10-10:30</td><td>樂器博物館快速看 + 紀念品商店 + 離場</td></tr>
+      </table>
+      <div class="tip-box"><strong>冷知識</strong>：佛羅倫斯有三尊大衛像——學院美術館（真跡）、領主廣場（複製品）、米開朗基羅廣場（青銅複製品）。</div>
+    `
+  },
+  'duomo-florence': {
+    title: '⛪ 百花大教堂',
+    html: `
+      <div class="highlight-box"><strong>日期</strong>：6/19（五）| <strong>穹頂</strong>：09:00 | <strong>時長</strong>：約 3 小時</div>
+      <h3>建築群（6 個參觀點）</h3>
+      <table>
+        <tr><th>景點</th><th>重點</th></tr>
+        <tr><td><strong>布魯內列斯基穹頂</strong></td><td>必去！463 階登頂看壁畫+全景</td></tr>
+        <tr><td>主教座堂</td><td>免費入場，仰望穹頂壁畫</td></tr>
+        <tr><td>喬托鐘樓</td><td>414 階，拍穹頂的最佳角度</td></tr>
+        <tr><td>洗禮堂</td><td>天堂之門（複製品）+ 金色馬賽克穹頂</td></tr>
+        <tr><td><strong>主教座堂博物館</strong></td><td>天堂之門真跡、米開朗基羅聖殤</td></tr>
+        <tr><td>地下遺跡</td><td>古羅馬遺址、布魯內列斯基的墓碑</td></tr>
+      </table>
+      <h3>穹頂攀登</h3>
+      <p><strong>463 階，無電梯</strong>，上行約 20-30 分鐘。直徑 45 公尺，至今仍是世界最大磚造穹頂。</p>
+      <h4>三大看點</h4>
+      <ol>
+        <li><strong>壁畫《最後的審判》</strong> — 近距離比地面仰望更震撼，面積約 3,600 平方公尺</li>
+        <li><strong>雙層殼體結構</strong> — 看布魯內列斯基的魚骨紋砌磚法</li>
+        <li><strong>頂部 360 度全景</strong> — 佛羅倫斯最佳拍照點</li>
+      </ol>
+      <h3>博物館必看</h3>
+      <ol>
+        <li><strong>天堂之門真跡</strong> — 吉貝爾蒂花 27 年打造</li>
+        <li><strong>米開朗基羅《佛羅倫斯聖殤》</strong> — 約 80 歲時作品，後方人物是自畫像</li>
+        <li><strong>多納太羅《懺悔的抹大拉》</strong> — 骨瘦如柴的木雕，極度寫實</li>
+      </ol>
+      <div class="warn-box">
+        <strong>穹頂注意</strong>：穿運動鞋，不能帶水瓶，遲到超過 30 分鐘不能進<br>
+        <strong>服裝</strong>：需遮肩過膝（會經過教堂內部）
+      </div>
+      <div class="tip-box"><strong>外牆冷知識</strong>：你看到的正面是 1887 年才完工的，比教堂本身晚了近 500 年！穹頂 15 世紀、鐘樓 14 世紀、正面 19 世紀。</div>
+    `
+  },
+  'santa-croce': {
+    title: '⛪ 聖十字聖殿',
+    html: `
+      <h3>Basilica di Santa Croce</h3>
+      <p>義大利的「先賢祠」，米開朗基羅、伽利略、馬基維利都長眠於此。教堂裡有喬托的濕壁畫傑作，迴廊裡還藏著布魯內列斯基設計的帕齊禮拜堂，是文藝復興建築的教科書。</p>
+      <h3>必看</h3>
+      <ul>
+        <li><strong>米開朗基羅之墓</strong> — 由瓦薩里設計，三位女性雕像代表繪畫、雕塑、建築</li>
+        <li><strong>伽利略之墓</strong> — 科學巨人的安息之地</li>
+        <li><strong>馬基維利之墓</strong> — 《君主論》作者</li>
+        <li><strong>喬托濕壁畫</strong> — 巴爾迪禮拜堂和佩魯齊禮拜堂的聖方濟各生平</li>
+        <li><strong>帕齊禮拜堂</strong>（迴廊中）— 布魯內列斯基設計的完美文藝復興空間</li>
+        <li><strong>但丁紀念碑</strong> — 但丁未葬於此（葬在拉韋納），這是衣冠冢</li>
+      </ul>
+      <div class="tip-box">AquaFlor 香水店就在旁邊（Borgo Santa Croce, 6），可以順路安排。</div>
+    `
+  },
+  'siena-duomo': {
+    title: '⛪ Siena 主教座堂',
+    html: `
+      <h3>Duomo di Siena</h3>
+      <p>黑白條紋大理石打造的哥德式教堂，華麗到讓人說不出話。</p>
+      <h3>必看</h3>
+      <ul>
+        <li><strong>大理石鑲嵌地板</strong> — 56 幅大理石鑲嵌畫，每一幅都是藝術品</li>
+        <li><strong>Piccolomini 圖書館</strong> — 色彩炸裂的濕壁畫，描繪教宗庇護二世的一生</li>
+        <li><strong>尼古拉·皮薩諾的講道壇</strong> — 哥德式雕刻的巔峰之作</li>
+        <li><strong>Facciatone 觀景台</strong> — 蓋到一半放棄的新教堂殘牆，爬上去能俯瞰田野廣場和托斯卡尼丘陵</li>
+      </ul>
+      <div class="highlight-box"><strong>建議</strong>：購買 Opa Si Pass（~€15-17），含教堂+博物館+Facciatone 觀景台</div>
+      <div class="tip-box"><strong>冷知識</strong>：Siena 人原本想把教堂擴建成當時世界最大的教堂（比梵蒂岡還大），但 1348 年黑死病和經濟崩潰讓工程永遠停擺，只留下一面氣派的殘牆——就是現在的 Facciatone 觀景台。</div>
+    `
+  },
+  'san-gimignano': {
+    title: '🏰 San Gimignano 一日遊',
+    html: `
+      <h3>中世紀曼哈頓</h3>
+      <p>以 14 座古塔聞名的山城，UNESCO 世界遺產。中世紀時富裕家族建塔比高炫富，最多時有 72 座塔，現存 14 座。</p>
+      <h3>必訪景點</h3>
+      <ul>
+        <li><strong>Piazza della Cisterna（水井廣場）</strong> — 中央有 1287 年古井，四周中世紀石塔和暖色老房子</li>
+        <li><strong>協同教堂（Collegiata）</strong> — 外觀樸素但整面牆的中世紀濕壁畫超震撼（~€5）</li>
+        <li><strong>Torre Grossa 塔樓</strong> — 全城唯一開放登頂、也是最高的塔（54m，~€9）</li>
+        <li><strong>Gelateria Dondoli</strong> — 多次世界冰淇淋冠軍</li>
+        <li><strong>Maria's Pelletterie</strong> — 珉奎同款包店</li>
+      </ul>
+      <h3>交通</h3>
+      <p>從 Siena 包車 Minivan 前往，單程 40-50 分鐘。提早請房東幫忙預約。</p>
+      <div class="tip-box"><strong>回程加碼</strong>：返回 Siena 後去聖多明我聖殿（聖加大利納頭顱聖髑）和梅迪奇要塞（國家酒窖，城牆上配紅酒看夕陽）。</div>
+    `
+  },
+  'milan-duomo': {
+    title: '⛪ 米蘭大教堂',
+    html: `
+      <div class="highlight-box"><strong>日期</strong>：6/22（一）| <strong>入場</strong>：09:00 | <strong>票價</strong>：每人 €26</div>
+      <h3>Combo Lift 包含</h3>
+      <ul>
+        <li>教堂內部（DUOMO）</li>
+        <li>屋頂露台（TERRACES）— 電梯上、樓梯下</li>
+        <li>大教堂博物館（DUOMO MUSEUM）</li>
+        <li>San Gottardo 教堂</li>
+      </ul>
+      <h3>必看</h3>
+      <ul>
+        <li><strong>屋頂露台</strong> — 在 135 座尖塔和 3,400 多尊雕像之間散步，天氣好可看阿爾卑斯山</li>
+        <li><strong>教堂內部</strong> — 五大連續拱廊，52 根巨柱撐起 45 公尺高的穹頂</li>
+        <li><strong>彩色花窗</strong> — 義大利最大的彩色玻璃窗群</li>
+        <li><strong>聖巴爾多羅買聖髑</strong> — 被活剝皮的殉道者，雕像寫實到令人不安</li>
+      </ul>
+      <div class="warn-box">
+        <strong>注意事項</strong>：<br>
+        ⚠ 08:45 到 GATE 2 LIGHT BLU 安檢<br>
+        ⚠ 服裝：不可穿短褲、背心、細肩帶、迷你裙<br>
+        ⚠ 不可帶大型行李<br>
+        ⚠ 教堂與露台上無廁所<br>
+        ⚠ 累積票 2 天有效，建議 6/22 當天完成
+      </div>
+    `
+  },
+  spots: {
+    title: '📍 景點簡介速查表',
+    html: `
+      <p style="color:var(--text-light);margin-bottom:16px">每個景點 1-2 句話，到現場快速翻閱。</p>
+      <h3 style="color:var(--siena)">Day 1-3 Siena & San Gimignano</h3>
+      <ul>
+        <li><strong>Via Banchi di Sopra</strong> — Siena 最熱鬧的主街，中世紀貴族豪宅一棟接一棟</li>
+        <li><strong>Palazzo Tolomei</strong> — Siena 最古老的私人宅邸（1205 年）</li>
+        <li><strong>Palazzo Salimbeni</strong> — 世界最古老銀行（1472 年）的總部</li>
+        <li><strong>Piazza del Campo</strong> — 全世界最美的扇形廣場，Palio 賽馬場</li>
+        <li><strong>Duomo di Siena</strong> — 黑白條紋大理石教堂，56 幅大理石鑲嵌畫</li>
+        <li><strong>Facciatone 觀景台</strong> — 蓋到一半放棄的擴建殘牆，Siena 最棒高空視角</li>
+        <li><strong>Torre del Mangia</strong> — 102m 高，義大利第二高中世紀塔樓</li>
+        <li><strong>Piazza della Cisterna</strong> — 1287 年古井，San Gimignano 最美廣場</li>
+        <li><strong>Torre Grossa</strong> — San Gimignano 唯一開放登頂的塔樓（54m）</li>
+      </ul>
+      <h3 style="color:var(--florence)">Day 4-7 佛羅倫斯</h3>
+      <ul>
+        <li><strong>Officina Profumo-Farmaceutica</strong> — 世界最古老藥妝店（1612 年）</li>
+        <li><strong>Uffizi Gallery</strong> — 文藝復興最高殿堂，維納斯的誕生、春</li>
+        <li><strong>Piazza della Signoria</strong> — 露天雕塑博物館</li>
+        <li><strong>Spazio Filatelia</strong> — 佛羅倫斯限定刺繡郵票</li>
+        <li><strong>Brunelleschi's Dome</strong> — 世界最大磚造穹頂，463 階</li>
+        <li><strong>Ponte Vecchio</strong> — 二戰唯一沒被炸的橋，橋上全是金飾店</li>
+        <li><strong>Giardino Bardini</strong> — 比波波利花園人少景好</li>
+        <li><strong>Galleria dell'Accademia</strong> — 大衛像真跡</li>
+        <li><strong>AquaFlor</strong> — 宮殿地窖手工香水店</li>
+        <li><strong>Santa Croce</strong> — 義大利先賢祠</li>
+      </ul>
+      <h3 style="color:var(--milan)">Day 8-9 米蘭</h3>
+      <ul>
+        <li><strong>Duomo di Milano</strong> — 600 年蓋好，3400 尊雕像 135 座尖塔</li>
+        <li><strong>Galleria V.E. II</strong> — 米蘭客廳，踩公牛蛋蛋求好運</li>
+        <li><strong>Navigli 運河區</strong> — 達文西設計的運河，米蘭最有活力的夜生活區</li>
+      </ul>
+    `
+  }
+};
+
+function openGuide(id) {
+  const guide = guideContent[id];
+  if (!guide) return;
+  document.getElementById('modalTitle').textContent = guide.title;
+  document.getElementById('modalBody').innerHTML = guide.html;
+  document.getElementById('guideModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGuide() {
+  document.getElementById('guideModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function closeGuideOutside(e) {
+  if (e.target === document.getElementById('guideModal')) closeGuide();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGuide(); });
+
+// Load checklist state on init
+loadChecklist();
+</script>
+</body>
+</html>
