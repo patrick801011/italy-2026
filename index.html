@@ -457,6 +457,34 @@ body {
   color: var(--text-muted);
 }
 
+.guide-card-actions {
+  padding: 0 24px 18px;
+  display: flex;
+  gap: 10px;
+}
+
+.guide-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78em;
+  font-weight: 500;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: var(--bg-warm);
+  color: var(--primary-warm);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.guide-dl-btn:hover {
+  background: var(--gold);
+  color: white;
+  border-color: var(--gold);
+}
+
 .guide-card-top .city-tag {
   display: inline-block;
   font-size: 0.7em;
@@ -1568,6 +1596,7 @@ body {
         <h3>🖼 烏菲茲美術館精華攻略</h3>
         <div class="meta">2.5-3 小時精華路線 | 6/18 09:00 入場</div>
       </div>
+      <div class="guide-card-actions"><a class="guide-dl-btn" href="guides/烏菲茲美術館導覽手冊.docx" download onclick="event.stopPropagation()">📥 下載 .docx</a></div>
     </div>
 
     <div class="guide-card" onclick="openGuide('accademia')">
@@ -1577,6 +1606,7 @@ body {
         <h3>🗿 學院美術館（大衛像）</h3>
         <div class="meta">1.5 小時完整導覽 | 6/20 09:00 入場</div>
       </div>
+      <div class="guide-card-actions"><a class="guide-dl-btn" href="guides/學院美術館導覽手冊.docx" download onclick="event.stopPropagation()">📥 下載 .docx</a></div>
     </div>
 
     <div class="guide-card" onclick="openGuide('duomo-florence')">
@@ -1586,6 +1616,7 @@ body {
         <h3>⛪ 百花大教堂</h3>
         <div class="meta">穹頂+博物館+教堂 約 3 小時 | 6/19</div>
       </div>
+      <div class="guide-card-actions"><a class="guide-dl-btn" href="guides/百花大教堂導覽手冊.docx" download onclick="event.stopPropagation()">📥 下載 .docx</a></div>
     </div>
 
     <div class="guide-card" onclick="openGuide('santa-croce')">
@@ -1595,6 +1626,7 @@ body {
         <h3>⛪ 聖十字聖殿</h3>
         <div class="meta">義大利的先賢祠 | 6/20 下午</div>
       </div>
+      <div class="guide-card-actions"><a class="guide-dl-btn" href="guides/聖十字聖殿導覽手冊.docx" download onclick="event.stopPropagation()">📥 下載 .docx</a></div>
     </div>
 
     <div class="guide-card" onclick="openGuide('siena-duomo')">
@@ -1604,6 +1636,7 @@ body {
         <h3>⛪ Siena 主教座堂</h3>
         <div class="meta">含博物館、Facciatone 觀景台 | 6/15</div>
       </div>
+      <div class="guide-card-actions"><a class="guide-dl-btn" href="guides/Siena主教座堂導覽手冊.docx" download onclick="event.stopPropagation()">📥 下載 .docx</a></div>
     </div>
 
     <div class="guide-card" onclick="openGuide('san-gimignano')">
@@ -1613,6 +1646,7 @@ body {
         <h3>🏰 San Gimignano 一日遊</h3>
         <div class="meta">中世紀曼哈頓 | 6/16</div>
       </div>
+      <div class="guide-card-actions"><a class="guide-dl-btn" href="guides/San_Gimignano一日遊導覽手冊.docx" download onclick="event.stopPropagation()">📥 下載 .docx</a></div>
     </div>
 
     <div class="guide-card" onclick="openGuide('milan-duomo')">
@@ -1622,6 +1656,7 @@ body {
         <h3>⛪ 米蘭大教堂</h3>
         <div class="meta">Combo Lift 含登頂 | 6/22 09:00</div>
       </div>
+      <div class="guide-card-actions"><a class="guide-dl-btn" href="guides/米蘭大教堂導覽手冊.docx" download onclick="event.stopPropagation()">📥 下載 .docx</a></div>
     </div>
 
     <div class="guide-card" onclick="openGuide('spots')">
