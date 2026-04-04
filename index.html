@@ -108,7 +108,10 @@ body {
   font-weight: 500;
   color: var(--text-light);
   transition: all 0.3s ease;
+  border: none;
   border-bottom: 2px solid transparent;
+  background: none;
+  font-family: inherit;
   flex-shrink: 0;
   letter-spacing: 0.3px;
 }
@@ -654,12 +657,11 @@ body {
 .transport-table tr:hover td { background: var(--bg-warm); }
 
 @media (max-width: 640px) {
-  .transport-table tr:first-child { display: none; }
+  .transport-table thead { display: none; }
   .transport-table,
   .transport-table tbody,
   .transport-table tr,
-  .transport-table td,
-  .transport-table th { display: block; width: 100%; }
+  .transport-table td { display: block; width: 100%; }
   .transport-table { box-shadow: none; border: none; background: transparent; }
   .transport-table tr {
     background: var(--bg-card);
@@ -1004,6 +1006,39 @@ body {
   .card-body { display: block !important; }
 }
 
+/* ============ Utility Tables (replace inline styles) ============ */
+.table-simple {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.table-simple th {
+  padding: 8px;
+  background: #f5f3ee;
+  border: 1px solid var(--border);
+  text-align: left;
+  font-weight: 600;
+}
+
+.table-simple td {
+  padding: 8px;
+  border: 1px solid var(--border);
+}
+
+/* ============ Accessibility ============ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ============ Selection Color ============ */
 ::selection {
   background: rgba(201,169,110,0.25);
@@ -1017,18 +1052,18 @@ body {
 <nav class="nav">
   <div class="nav-inner">
     <div class="nav-brand">Italy 2026</div>
-    <div class="nav-link active" onclick="showSection('overview', this)">總覽</div>
-    <div class="nav-link" onclick="showSection('itinerary', this)">每日行程</div>
-    <div class="nav-link" onclick="showSection('guides', this)">導覽手冊</div>
-    <div class="nav-link" onclick="showSection('transport', this)">交通</div>
-    <div class="nav-link" onclick="showSection('etiquette', this)">文化禮儀</div>
-    <div class="nav-link" onclick="showSection('practical', this)">實用資訊</div>
-    <!-- <div class="nav-link" onclick="showSection('costs', this)">費用</div> -->
-    <div class="nav-link" onclick="showSection('map', this)">地圖</div>
+    <button type="button" class="nav-link active" onclick="showSection('overview', this)">總覽</button>
+    <button type="button" class="nav-link" onclick="showSection('itinerary', this)">每日行程</button>
+    <button type="button" class="nav-link" onclick="showSection('guides', this)">導覽手冊</button>
+    <button type="button" class="nav-link" onclick="showSection('transport', this)">交通</button>
+    <button type="button" class="nav-link" onclick="showSection('etiquette', this)">文化禮儀</button>
+    <button type="button" class="nav-link" onclick="showSection('practical', this)">實用資訊</button>
+    <button type="button" class="nav-link" onclick="showSection('map', this)">地圖</button>
   </div>
 </nav>
 
 <!-- Hero -->
+<h1 class="visually-hidden">2026 義大利旅遊規劃</h1>
 <div class="hero" id="hero">
   <div class="hero-inner">
     <div class="hero-stats">
@@ -1724,9 +1759,12 @@ body {
 
   <div style="overflow-x:auto;margin-bottom:24px">
     <table class="transport-table">
+      <thead>
       <tr>
         <th>日期</th><th>路線</th><th>交通方式</th><th>車程</th><th>狀態</th>
       </tr>
+      </thead>
+      <tbody>
       <tr>
         <td>6/14</td><td>MXP → Milano Centrale</td><td>Malpensa Express</td><td>52 分</td><td class="status-pending">待訂（可當天買）</td>
       </tr>
@@ -1754,6 +1792,7 @@ body {
       <tr>
         <td>6/23</td><td>Milano Centrale → MXP</td><td>Malpensa Express</td><td>52 分</td><td class="status-pending">待訂（可當天買）</td>
       </tr>
+      </tbody>
     </table>
   </div>
 
@@ -2095,25 +2134,25 @@ body {
   <h3 style="margin:30px 0 16px">📋 行前待辦清單</h3>
 
   <div id="checklist">
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 預訂 6/14 米蘭→佛羅倫斯高鐵票</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 預訂 6/21 佛羅倫斯→米蘭高鐵票</div>
-    <div class="checklist-item checked" onclick="toggleCheck(this)"><input type="checkbox" checked> 預訂 6/14 佛羅倫斯→Siena Booking 接送 ✓</div>
-    <div class="checklist-item checked" onclick="toggleCheck(this)"><input type="checkbox" checked> 預訂 6/17 Siena→佛羅倫斯 Booking 接送 ✓</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 確認 6/16 San Gimignano 交通（問房東）</div>
-    <div class="checklist-item checked" onclick="toggleCheck(this)"><input type="checkbox" checked> 預約烏菲茲美術館門票 ✓ 6/18 09:00</div>
-    <div class="checklist-item checked" onclick="toggleCheck(this)"><input type="checkbox" checked> 預約學院美術館門票 ✓ 6/20 09:00</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 預約百花大教堂圓頂登頂（必須線上預約）</div>
-    <div class="checklist-item checked" onclick="toggleCheck(this)"><input type="checkbox" checked> 預約米蘭大教堂 Combo Lift ✓ 6/22 09:00</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 購買義大利 eSIM</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 確認護照效期（需至少到 2026/9/23）</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 準備旅平險</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 確認信用卡海外刷卡功能開通</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 確認信用卡 PIN 碼（預借現金密碼）</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 下載離線地圖（Google Maps 義大利）</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 下載 Trenitalia / Italo App</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 列印門票（烏菲茲、學院美術館、米蘭大教堂）</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 準備轉接頭</div>
-    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox"> 帶薄罩衫/絲巾（教堂用）</div>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 預訂 6/14 米蘭→佛羅倫斯高鐵票</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 預訂 6/21 佛羅倫斯→米蘭高鐵票</label>
+    <label class="checklist-item checked" onclick="toggleCheck(event,this)"><input type="checkbox" checked> 預訂 6/14 佛羅倫斯→Siena Booking 接送 ✓</label>
+    <label class="checklist-item checked" onclick="toggleCheck(event,this)"><input type="checkbox" checked> 預訂 6/17 Siena→佛羅倫斯 Booking 接送 ✓</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 確認 6/16 San Gimignano 交通（問房東）</label>
+    <label class="checklist-item checked" onclick="toggleCheck(event,this)"><input type="checkbox" checked> 預約烏菲茲美術館門票 ✓ 6/18 09:00</label>
+    <label class="checklist-item checked" onclick="toggleCheck(event,this)"><input type="checkbox" checked> 預約學院美術館門票 ✓ 6/20 09:00</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 預約百花大教堂圓頂登頂（必須線上預約）</label>
+    <label class="checklist-item checked" onclick="toggleCheck(event,this)"><input type="checkbox" checked> 預約米蘭大教堂 Combo Lift ✓ 6/22 09:00</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 購買義大利 eSIM</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 確認護照效期（需至少到 2026/9/23）</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 準備旅平險</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 確認信用卡海外刷卡功能開通</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 確認信用卡 PIN 碼（預借現金密碼）</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 下載離線地圖（Google Maps 義大利）</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 下載 Trenitalia / Italo App</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 列印門票（烏菲茲、學院美術館、米蘭大教堂）</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 準備轉接頭</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 帶薄罩衫/絲巾（教堂用）</label>
   </div>
 </div>
 
@@ -2159,17 +2198,21 @@ body {
 <div class="section" id="sec-map">
   <h2 class="section-title">行程地圖</h2>
   <p style="color:var(--text-light);margin-bottom:16px">所有景點、餐廳、住宿標記在地圖上，可切換圖層按天查看</p>
-  <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border-light)">
-    <iframe src="https://www.google.com/maps/d/embed?mid=1HOFrcIPolmJ7dLt4P6qY5t2FwQyiPAQ&ehbc=2E312F" width="100%" height="600" style="border:0;display:block" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <div id="mapContainer" style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border-light);min-height:200px;display:flex;align-items:center;justify-content:center;background:var(--bg-warm);cursor:pointer" onclick="loadMap()">
+    <div id="mapPlaceholder" style="text-align:center;padding:40px 20px">
+      <div style="font-size:2em;margin-bottom:8px">🗺</div>
+      <div style="font-weight:600;margin-bottom:4px">點擊載入互動地圖</div>
+      <div style="font-size:0.85em;color:var(--text-muted)">所有景點、餐廳、住宿標記</div>
+    </div>
   </div>
 </div>
 
 <!-- Modal for guides -->
-<div class="modal-overlay" id="guideModal" onclick="closeGuideOutside(event)">
+<div class="modal-overlay" id="guideModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="closeGuideOutside(event)">
   <div class="modal">
     <div class="modal-header">
       <h2 id="modalTitle">導覽手冊</h2>
-      <button class="modal-close" onclick="closeGuide()">&times;</button>
+      <button class="modal-close" id="modalClose" onclick="closeGuide()" aria-label="關閉">&times;</button>
     </div>
     <div class="modal-body" id="modalBody"></div>
   </div>
@@ -2218,12 +2261,19 @@ function searchItinerary(query) {
     card.style.display = show ? '' : 'none';
     if (show) visible++;
     if (q !== '' && show) card.classList.add('open');
+    if (q === '') card.classList.remove('open');
   });
   document.getElementById('search-empty').style.display = (q !== '' && visible === 0) ? '' : 'none';
 }
 
-// Checklist toggle
-function toggleCheck(item) {
+// Checklist toggle — prevent double-toggle when clicking checkbox inside label
+function toggleCheck(e, item) {
+  if (e.target.type === 'checkbox') {
+    item.classList.toggle('checked', e.target.checked);
+    saveChecklist();
+    return;
+  }
+  e.preventDefault();
   const cb = item.querySelector('input[type="checkbox"]');
   cb.checked = !cb.checked;
   item.classList.toggle('checked', cb.checked);
@@ -2472,18 +2522,24 @@ const guideContent = {
   }
 };
 
+let lastFocusedElement = null;
+
 function openGuide(id) {
   const guide = guideContent[id];
   if (!guide) return;
+  lastFocusedElement = document.activeElement;
   document.getElementById('modalTitle').textContent = guide.title;
   document.getElementById('modalBody').innerHTML = guide.html;
-  document.getElementById('guideModal').classList.add('show');
+  const modal = document.getElementById('guideModal');
+  modal.classList.add('show');
   document.body.style.overflow = 'hidden';
+  document.getElementById('modalClose').focus();
 }
 
 function closeGuide() {
   document.getElementById('guideModal').classList.remove('show');
   document.body.style.overflow = '';
+  if (lastFocusedElement) lastFocusedElement.focus();
 }
 
 function closeGuideOutside(e) {
@@ -2491,6 +2547,14 @@ function closeGuideOutside(e) {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGuide(); });
+
+// Lazy load map
+function loadMap() {
+  const container = document.getElementById('mapContainer');
+  container.style.cursor = 'default';
+  container.onclick = null;
+  container.innerHTML = '<iframe src="https://www.google.com/maps/d/embed?mid=1HOFrcIPolmJ7dLt4P6qY5t2FwQyiPAQ&ehbc=2E312F" width="100%" height="600" style="border:0;display:block" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+}
 
 // Load checklist state on init
 loadChecklist();
