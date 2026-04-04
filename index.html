@@ -654,11 +654,12 @@ body {
 .transport-table tr:hover td { background: var(--bg-warm); }
 
 @media (max-width: 640px) {
-  .transport-table thead { display: none; }
+  .transport-table tr:first-child { display: none; }
   .transport-table,
   .transport-table tbody,
   .transport-table tr,
-  .transport-table td { display: block; width: 100%; }
+  .transport-table td,
+  .transport-table th { display: block; width: 100%; }
   .transport-table { box-shadow: none; border: none; background: transparent; }
   .transport-table tr {
     background: var(--bg-card);
