@@ -110,7 +110,7 @@ body {
 .hero {
   background: linear-gradient(145deg, #2d3436 0%, #3d3029 40%, #4a3728 70%, #2d3436 100%);
   color: white;
-  padding: 14px 24px;
+  padding: 10px 24px;
   position: relative;
   overflow: hidden;
 }
@@ -140,7 +140,7 @@ body {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20px;
   position: relative;
 }
@@ -202,15 +202,12 @@ body {
 
 @media (max-width: 640px) {
   .hero-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    justify-content: center;
+    gap: 6px;
   }
-  .hero-left {
-    gap: 10px;
-  }
-  .hero .subtitle {
-    display: none;
+  .hero-stats {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
@@ -881,10 +878,9 @@ body {
 
 /* ============ Responsive ============ */
 @media (max-width: 768px) {
-  .hero { padding: 48px 16px 40px; }
-  .hero h1 { font-size: 2em; letter-spacing: 3px; }
-  .hero-stats { gap: 24px; }
-  .hero-stat .num { font-size: 2em; }
+  .hero { padding: 10px 16px; }
+  .hero-stats { gap: 6px; }
+  .hero-stat .num { font-size: 1.2em; }
   .nav-brand { padding: 12px 14px; font-size: 1em; }
   .nav-link { padding: 14px 14px; font-size: 0.82em; }
   .guide-grid { grid-template-columns: 1fr; }
@@ -1002,10 +998,6 @@ body {
 <!-- Hero -->
 <div class="hero" id="hero">
   <div class="hero-inner">
-    <div class="hero-left">
-      <h1>2026 義大利</h1>
-      <div class="subtitle">台北 → 米蘭 → Siena → 佛羅倫斯 → 米蘭 → 台北</div>
-    </div>
     <div class="hero-stats">
       <div class="hero-stat"><span class="num">11</span><span class="label">天</span></div>
       <div class="hero-stat"><span class="num">5</span><span class="label">人</span></div>
