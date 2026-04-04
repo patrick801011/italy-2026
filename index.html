@@ -990,7 +990,7 @@ body {
     <div class="nav-link" onclick="showSection('transport', this)">交通</div>
     <div class="nav-link" onclick="showSection('etiquette', this)">文化禮儀</div>
     <div class="nav-link" onclick="showSection('practical', this)">實用資訊</div>
-    <div class="nav-link" onclick="showSection('costs', this)">費用</div>
+    <!-- <div class="nav-link" onclick="showSection('costs', this)">費用</div> -->
     <div class="nav-link" onclick="showSection('map', this)">地圖</div>
   </div>
 </nav>
@@ -1669,15 +1669,6 @@ body {
 
     <div class="guide-card" style="cursor:default">
       <div class="guide-card-top">
-        <span class="city-tag" style="background:var(--primary)">全程</span>
-        <h3>🇮🇹 禮儀與文化差異指南</h3>
-        <div class="meta">餐飲、社交、教堂、購物禮儀</div>
-      </div>
-      <div class="guide-card-actions"><a class="guide-dl-btn" href="docs/義大利禮儀與文化差異指南.docx" download>📥 下載 .docx</a></div>
-    </div>
-
-    <div class="guide-card" style="cursor:default">
-      <div class="guide-card-top">
         <span class="city-tag" style="background:var(--florence)">佛羅倫斯</span>
         <h3>🖼 烏菲茲精華攻略（精簡版）</h3>
         <div class="meta">重點作品速查 + 路線建議</div>
@@ -1839,6 +1830,8 @@ body {
 <!-- ====== ETIQUETTE ====== -->
 <div class="section" id="sec-etiquette">
   <h2 class="section-title">文化禮儀指南</h2>
+
+  <div style="margin-bottom:16px"><a class="guide-dl-btn" href="docs/義大利禮儀與文化差異指南.docx" download style="display:inline-block">📥 下載完整禮儀指南 (.docx)</a></div>
 
   <div class="tabs">
     <button class="tab active" onclick="showTab(this,'etq-dining')">餐飲</button>
