@@ -21,7 +21,7 @@
   --bg-card: #ffffff;
   --text: #2d3436;
   --text-light: #7a7572;
-  --text-muted: #a09a94;
+  --text-muted: #706b66;
   --border: #e8e3db;
   --border-light: #f0ece5;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
@@ -70,6 +70,24 @@ body {
 }
 
 .nav-inner::-webkit-scrollbar { display: none; }
+
+.nav::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9));
+  pointer-events: none;
+  z-index: 1;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav::after { display: block; }
+  .nav { position: sticky; }
+}
 
 .nav-brand {
   padding: 14px 20px;
@@ -143,29 +161,6 @@ body {
   justify-content: center;
   gap: 20px;
   position: relative;
-}
-
-.hero-left {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5em;
-  letter-spacing: 3px;
-  font-weight: 700;
-  white-space: nowrap;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.2);
-}
-
-.hero .subtitle {
-  font-size: 0.82em;
-  opacity: 0.55;
-  font-weight: 400;
-  letter-spacing: 1px;
 }
 
 .hero-stats {
@@ -658,6 +653,42 @@ body {
 
 .transport-table tr:hover td { background: var(--bg-warm); }
 
+@media (max-width: 640px) {
+  .transport-table thead { display: none; }
+  .transport-table,
+  .transport-table tbody,
+  .transport-table tr,
+  .transport-table td { display: block; width: 100%; }
+  .transport-table { box-shadow: none; border: none; background: transparent; }
+  .transport-table tr {
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    margin-bottom: 10px;
+    padding: 14px 16px;
+  }
+  .transport-table td {
+    padding: 3px 0;
+    border: none;
+    font-size: 0.9em;
+  }
+  .transport-table td:first-child {
+    font-weight: 700;
+    color: var(--primary-warm);
+    font-size: 0.82em;
+    margin-bottom: 2px;
+  }
+  .transport-table td:nth-child(2) {
+    font-weight: 600;
+    font-size: 1em;
+    margin-bottom: 4px;
+  }
+  .transport-table td:nth-child(3)::before { content: '🚄 '; }
+  .transport-table td:nth-child(4)::before { content: '⏱ '; }
+  .transport-table td:last-child { margin-top: 4px; }
+}
+
 .status-booked {
   color: #4a8c5c;
   font-weight: 600;
@@ -868,6 +899,7 @@ body {
 .footer {
   text-align: center;
   padding: 40px 24px;
+  padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px));
   color: var(--text-muted);
   font-size: 0.84em;
   border-top: 1px solid var(--border);
@@ -1109,6 +1141,7 @@ body {
   <div style="margin-bottom:16px"><a class="guide-dl-btn" href="docs/2026義大利行程規劃.docx" download style="display:inline-block">📥 下載完整行程規劃表 (.docx)</a></div>
 
   <input type="text" class="search-bar" placeholder="🔍 搜尋景點、餐廳..." oninput="searchItinerary(this.value)">
+  <div id="search-empty" style="display:none;text-align:center;padding:40px 20px;color:var(--text-muted);font-size:0.95em">找不到相關行程，試試搜尋景點或餐廳名稱</div>
 
   <!-- Day 0 -->
   <div class="card day-card" data-search="出發 桃園機場 BR95">
@@ -1683,6 +1716,11 @@ body {
 <div class="section" id="sec-transport">
   <h2 class="section-title">交通資訊</h2>
 
+  <div style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap">
+    <a class="guide-dl-btn" href="docs/交通總覽.docx" download style="display:inline-flex">📥 交通總覽</a>
+    <a class="guide-dl-btn" href="docs/交通速查表.docx" download style="display:inline-flex">📥 速查表</a>
+  </div>
+
   <div style="overflow-x:auto;margin-bottom:24px">
     <table class="transport-table">
       <tr>
@@ -1753,77 +1791,13 @@ body {
     </div>
   </div>
 
-  <h3 style="margin-top:24px;margin-bottom:16px;color:var(--primary-warm)">📄 交通文件下載</h3>
-  <div class="guide-grid">
-
-    <div class="guide-card" style="cursor:default">
-      <div class="guide-card-top">
-        <span class="city-tag" style="background:var(--primary)">全程</span>
-        <h3>🚄 交通總覽</h3>
-        <div class="meta">全程交通方式、訂票指南、注意事項</div>
-      </div>
-      <div class="guide-card-actions"><a class="guide-dl-btn" href="docs/交通總覽.docx" download>📥 下載 .docx</a></div>
-    </div>
-
-    <div class="guide-card" style="cursor:default">
-      <div class="guide-card-top">
-        <span class="city-tag" style="background:var(--primary)">全程</span>
-        <h3>📊 交通速查表</h3>
-        <div class="meta">每日交通一覽 + 費用速算 + 待辦訂票</div>
-      </div>
-      <div class="guide-card-actions"><a class="guide-dl-btn" href="docs/交通速查表.docx" download>📥 下載 .docx</a></div>
-    </div>
-
-    <div class="guide-card" style="cursor:default">
-      <div class="guide-card-top">
-        <span class="city-tag" style="background:var(--milan)">米蘭</span>
-        <span class="city-tag" style="background:var(--gold)">Day 1</span>
-        <h3>✈ MXP 機場到 Siena</h3>
-        <div class="meta">三段交通完整指南 + 備案方案</div>
-      </div>
-      <div class="guide-card-actions"><a class="guide-dl-btn" href="docs/Day1_米蘭機場到Siena.docx" download>📥 下載 .docx</a></div>
-    </div>
-
-    <div class="guide-card" style="cursor:default">
-      <div class="guide-card-top">
-        <span class="city-tag" style="background:var(--siena)">Siena</span>
-        <span class="city-tag" style="background:var(--gold)">Day 3</span>
-        <h3>🚐 Siena↔San Gimignano</h3>
-        <div class="meta">包車 vs 巴士 方案比較</div>
-      </div>
-      <div class="guide-card-actions"><a class="guide-dl-btn" href="docs/Day3_Siena到SanGimignano.docx" download>📥 下載 .docx</a></div>
-    </div>
-
-    <div class="guide-card" style="cursor:default">
-      <div class="guide-card-top">
-        <span class="city-tag" style="background:var(--siena)">Siena</span>
-        <span class="city-tag" style="background:var(--gold)">Day 4</span>
-        <h3>🚐 Siena→佛羅倫斯</h3>
-        <div class="meta">跨城接送 + 退房流程 + ZTL 說明</div>
-      </div>
-      <div class="guide-card-actions"><a class="guide-dl-btn" href="docs/Day4_Siena到佛羅倫斯.docx" download>📥 下載 .docx</a></div>
-    </div>
-
-    <div class="guide-card" style="cursor:default">
-      <div class="guide-card-top">
-        <span class="city-tag" style="background:var(--florence)">佛羅倫斯</span>
-        <span class="city-tag" style="background:var(--gold)">Day 8</span>
-        <h3>🚄 佛羅倫斯→米蘭</h3>
-        <div class="meta">高鐵方案比較 + 訂票教學</div>
-      </div>
-      <div class="guide-card-actions"><a class="guide-dl-btn" href="docs/Day8_佛羅倫斯到米蘭.docx" download>📥 下載 .docx</a></div>
-    </div>
-
-    <div class="guide-card" style="cursor:default">
-      <div class="guide-card-top">
-        <span class="city-tag" style="background:var(--milan)">米蘭</span>
-        <span class="city-tag" style="background:var(--gold)">Day 10</span>
-        <h3>✈ 米蘭到機場</h3>
-        <div class="meta">回程交通 + 退稅流程</div>
-      </div>
-      <div class="guide-card-actions"><a class="guide-dl-btn" href="docs/Day10_米蘭到機場.docx" download>📥 下載 .docx</a></div>
-    </div>
-
+  <h3 style="margin-top:24px;margin-bottom:16px;color:var(--primary-warm)">📄 各日交通詳細指南</h3>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <a class="guide-dl-btn" href="docs/Day1_米蘭機場到Siena.docx" download style="display:inline-flex">📥 Day1 MXP→Siena</a>
+    <a class="guide-dl-btn" href="docs/Day3_Siena到SanGimignano.docx" download style="display:inline-flex">📥 Day3 Siena↔SGM</a>
+    <a class="guide-dl-btn" href="docs/Day4_Siena到佛羅倫斯.docx" download style="display:inline-flex">📥 Day4 Siena→佛羅倫斯</a>
+    <a class="guide-dl-btn" href="docs/Day8_佛羅倫斯到米蘭.docx" download style="display:inline-flex">📥 Day8 佛羅倫斯→米蘭</a>
+    <a class="guide-dl-btn" href="docs/Day10_米蘭到機場.docx" download style="display:inline-flex">📥 Day10 米蘭→機場</a>
   </div>
 </div>
 
@@ -2236,11 +2210,15 @@ function showTab(btn, id) {
 // Search itinerary
 function searchItinerary(query) {
   const q = query.toLowerCase();
+  let visible = 0;
   document.querySelectorAll('.day-card').forEach(card => {
     const text = (card.dataset.search + ' ' + card.textContent).toLowerCase();
-    card.style.display = q === '' || text.includes(q) ? '' : 'none';
-    if (q !== '' && text.includes(q)) card.classList.add('open');
+    const show = q === '' || text.includes(q);
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+    if (q !== '' && show) card.classList.add('open');
   });
+  document.getElementById('search-empty').style.display = (q !== '' && visible === 0) ? '' : 'none';
 }
 
 // Checklist toggle
