@@ -1313,6 +1313,7 @@ body {
     <button type="button" class="nav-link" onclick="showSection('transport', this)">交通</button>
     <button type="button" class="nav-link" onclick="showSection('etiquette', this)">文化禮儀</button>
     <button type="button" class="nav-link" onclick="showSection('practical', this)">實用資訊</button>
+    <button type="button" class="nav-link" onclick="showSection('costs', this)">費用</button>
     <button type="button" class="nav-link" onclick="showSection('map', this)">地圖</button>
   </div>
 </nav>
@@ -1425,6 +1426,7 @@ body {
     <div class="card-body">
       <table style="width:100%;border-collapse:collapse;font-size:0.9em">
         <tr><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">景點</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">日期/時間</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">費用</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">備註</th></tr>
+        <tr><td style="padding:8px;border:1px solid var(--border)">Siena 主教座堂 PORTA del CIELO</td><td style="padding:8px;border:1px solid var(--border)">6/15 11:30 屋頂導覽</td><td style="padding:8px;border:1px solid var(--border)">€105 (每人€21)</td><td style="padding:8px;border:1px solid var(--border)"><span class="warning-badge" style="background:#e67e22">待訂</span> 5/15 前線上預約</td></tr>
         <tr><td style="padding:8px;border:1px solid var(--border)">烏菲茲美術館</td><td style="padding:8px;border:1px solid var(--border)">6/18 09:00</td><td style="padding:8px;border:1px solid var(--border)">€145 (每人€29)</td><td style="padding:8px;border:1px solid var(--border)"><span class="warning-badge">要列印</span></td></tr>
         <tr><td style="padding:8px;border:1px solid var(--border)">學院美術館</td><td style="padding:8px;border:1px solid var(--border)">6/20 09:00</td><td style="padding:8px;border:1px solid var(--border)">€120 (每人€24)</td><td style="padding:8px;border:1px solid var(--border)"><span class="warning-badge">要列印</span></td></tr>
         <tr><td style="padding:8px;border:1px solid var(--border)">百花大教堂圓頂 (Brunelleschi Pass)</td><td style="padding:8px;border:1px solid var(--border)">6/19 09:00</td><td style="padding:8px;border:1px solid var(--border)">約€150 (每人€30)</td><td style="padding:8px;border:1px solid var(--border)"><span class="warning-badge" style="background:#e67e22">待訂</span> 必須線上預約</td></tr>
@@ -1507,7 +1509,7 @@ body {
   </div>
 
   <!-- Day 2 -->
-  <div class="card day-card" data-search="Siena 主教座堂 Duomo Facciatone 曼吉亞塔樓 Torre del Mangia 購物 Drogheria Manganelli De miccoli Osteria Il Grattacielo">
+  <div class="card day-card" data-search="Siena 主教座堂 Duomo Facciatone PORTA del CIELO 天堂之門 屋頂導覽 Piccolomini 洗禮堂 地下聖殿 Cripta 曼吉亞塔樓 Torre del Mangia 購物 Drogheria Manganelli De miccoli Osteria Il Grattacielo">
     <div class="card-header" onclick="toggleCard(this)">
       <span class="arrow">&#9654;</span>
       <span class="day-badge city-siena">Day 2</span>
@@ -1521,15 +1523,47 @@ body {
         <div class="timeline-desc">買招牌帕尼尼當體力早餐</div>
       </div>
       <div class="timeline-item ticket">
-        <div class="timeline-time">10:00</div>
-        <div class="timeline-title">Siena 主教座堂區域 <span class="ticket-badge">需門票</span></div>
-        <div class="timeline-desc">主教座堂 + 博物館 + Facciatone 觀景台<br>建議購買 Opa Si Pass（全包票 ~€15-17）</div>
-        <div class="timeline-tip">黑白條紋大理石哥德式教堂，地板上 56 幅大理石鑲嵌畫；Facciatone 觀景台比曼吉亞塔樓人少很多</div>
+        <div class="timeline-time">10:00-10:15</div>
+        <div class="timeline-title">🏛 Facciatone 觀景台 <span class="ticket-badge">PORTA del CIELO 通票</span></div>
+        <div class="timeline-desc">~131 階窄陡螺旋梯</div>
+        <div class="timeline-tip">Siena 人「蓋到一半就放棄」的新教堂擴建殘牆，能把田野廣場和托斯卡尼丘陵全收進眼底，比曼吉亞塔樓人少很多</div>
+      </div>
+      <div class="timeline-item ticket">
+        <div class="timeline-time">10:15-10:40</div>
+        <div class="timeline-title">🖼 主教座堂博物館</div>
+        <div class="timeline-desc">杜喬《Maestà》、重點展品</div>
+      </div>
+      <div class="timeline-item ticket">
+        <div class="timeline-time">10:40-11:10</div>
+        <div class="timeline-title">🏛 主教座堂本體 + Piccolomini 圖書館</div>
+        <div class="timeline-desc">黑白條紋大理石哥德式教堂，Piccolomini 圖書館色彩鮮明的濕壁畫必看</div>
+        <div class="timeline-tip">⚠ 2026/6/15 是地板覆蓋保護期（地板開放期為 6/27-7/31、8/18-11/15），56 幅鑲嵌畫精華大多看不到，僅入口赫密士可見</div>
+      </div>
+      <div class="timeline-item ticket">
+        <div class="timeline-time">11:10-11:30</div>
+        <div class="timeline-title">🚶 走到屋頂導覽報到處 + 等候</div>
+        <div class="timeline-desc">11:15 前抵達（導覽 15 分鐘前報到 + 安檢），11:15-11:30 等候集合</div>
+      </div>
+      <div class="timeline-item ticket">
+        <div class="timeline-time">11:30-12:00</div>
+        <div class="timeline-title">🆙 PORTA del CIELO 屋頂導覽 <span class="ticket-badge" style="background:#e67e22">建議 5/15 前線上預約</span></div>
+        <div class="timeline-desc">€21/人 × 5 = €105 | 30 分鐘 | 看彩繪玻璃近距離 + 星空穹頂 + 拱頂內部結構（實際場次、語言、人數上限以購票系統為準）</div>
+        <div class="timeline-tip">⚠ 屋頂另爬約 70-80 階窄陡石梯（含傾斜走道）；恐高或膝蓋不適者可放棄屋頂（票款無法退回）</div>
+      </div>
+      <div class="timeline-item ticket">
+        <div class="timeline-time">12:00-12:20</div>
+        <div class="timeline-title">🏛 洗禮堂（Battistero）</div>
+        <div class="timeline-desc">多那太羅「希律王宴席」青銅浮雕</div>
+      </div>
+      <div class="timeline-item ticket">
+        <div class="timeline-time">12:20-12:40</div>
+        <div class="timeline-title">🏛 地下聖殿（Cripta）</div>
+        <div class="timeline-desc">可視體力決定，PORTA del CIELO 通票已涵蓋</div>
       </div>
       <div class="timeline-item meal">
-        <div class="timeline-time">12:30</div>
+        <div class="timeline-time">12:45</div>
         <div class="timeline-title">🍽 Osteria Il Grattacielo</div>
-        <div class="timeline-desc">在地老牌草根餐館</div>
+        <div class="timeline-desc">在地老牌草根餐館，因加入屋頂導覽押後 15 分鐘</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-time">13:30</div>
@@ -1543,8 +1577,8 @@ body {
       </div>
       <div class="timeline-item ticket">
         <div class="timeline-time">18:30</div>
-        <div class="timeline-title">曼吉亞塔樓 <span class="ticket-badge">~€10</span></div>
-        <div class="timeline-desc">視體力決定是否登頂，400 階可俯瞰整座 Siena</div>
+        <div class="timeline-title">曼吉亞塔樓 <span class="ticket-badge">~€10</span> <span class="ticket-badge" style="background:#888">🆕 自由參加</span></div>
+        <div class="timeline-desc">一天已累積 ~600 階（Facciatone 131 + 屋頂 70-80 + 此處 ~400），膝蓋不適者改在田野廣場斜坡坐著看夕陽 + Aperol Spritz</div>
         <div class="timeline-tip">102 公尺高、義大利第二高中世紀塔樓，塔名來自一位綽號「吃貨」的敲鐘人</div>
       </div>
     </div>
@@ -1645,7 +1679,7 @@ body {
   </div>
 
   <!-- Day 5 -->
-  <div class="card day-card" data-search="烏菲茲 Uffizi 領主廣場 Piazza della Signoria 刺繡郵票 Spazio Filatelia Via dei Calzaiuoli Osteria del Cinghiale Bianco">
+  <div class="card day-card" data-search="烏菲茲 Uffizi 領主廣場 Piazza della Signoria 刺繡郵票 Spazio Filatelia Via dei Calzaiuoli All'Antico Vinaio schiacciata 三明治 阿諾河">
     <div class="card-header" onclick="toggleCard(this)">
       <span class="arrow">&#9654;</span>
       <span class="day-badge city-florence">Day 5</span>
@@ -1664,9 +1698,10 @@ body {
         <div class="timeline-tip">文藝復興最高殿堂：波提切利「維納斯的誕生」「春」、達文西「天使報喜」、米開朗基羅「聖家族」、卡拉瓦喬「美杜莎」</div>
       </div>
       <div class="timeline-item meal">
-        <div class="timeline-time">12:00</div>
-        <div class="timeline-title">🍽 Osteria del Cinghiale Bianco</div>
-        <div class="timeline-desc">跨過老橋即抵達，南岸知名老店</div>
+        <div class="timeline-time">11:40</div>
+        <div class="timeline-title">🥖 All'Antico Vinaio（Via dei Neri 74r 或 76r）</div>
+        <div class="timeline-desc">烏菲茲走路 3 分鐘 | Via dei Neri 同街有 65/74/76/78 四個店面，74r/76r 較少排隊 | Schiacciata 約 €8-€12（部分至 €14）+ 紅酒一杯（價格現場確認）</div>
+        <div class="timeline-tip">⚠ <strong>佛羅倫斯禁食規定</strong>：Via dei Neri、Piazzale degli Uffizi 等熱門路段 12:00-15:00 禁止在人行道、店門口、廣場階梯蹲坐進食，違者罰款。請走到阿諾河邊 Lungarno 沿河護欄外側或共和廣場長椅吃。1991 創立家族店，Gambero Rosso 多次報導的佛羅倫斯街頭美食名店，Saveur「世界最佳三明治」推薦。原訂白野豬週四中午不營業，改到 6/19 晚餐。必試 5 款分食：La Favolosa、La Boss、La Paradiso、La Inferno、La Dante</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-time">13:30</div>
@@ -1695,7 +1730,7 @@ body {
   </div>
 
   <!-- Day 6 -->
-  <div class="card day-card" data-search="百花大教堂 Brunelleschi Dome 圓頂 博物館 Ponte Vecchio 老橋 Giardino Bardini Babae 酒窗 Il Nutino Giulio Giannini Santo Spirito">
+  <div class="card day-card" data-search="百花大教堂 Brunelleschi Dome 圓頂 博物館 Ponte Vecchio 老橋 Giardino Bardini Babae 酒窗 Il Nutino Giulio Giannini Santo Spirito Osteria del Cinghiale Bianco 白野豬">
     <div class="card-header" onclick="toggleCard(this)">
       <span class="arrow">&#9654;</span>
       <span class="day-badge city-florence">Day 6</span>
@@ -1736,9 +1771,15 @@ body {
         <div class="timeline-tip">比波波利花園人少、花多、視野更好，六月的紫藤花和玫瑰正是最美時候</div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-time">18:30</div>
+        <div class="timeline-time">18:00-19:00</div>
         <div class="timeline-title">🍷 Babae 酒窗體驗</div>
-        <div class="timeline-desc">南岸著名的紅酒窗口</div>
+        <div class="timeline-desc">南岸著名的紅酒窗口（提前 30 分鐘，當開胃酒）</div>
+      </div>
+      <div class="timeline-item meal">
+        <div class="timeline-time">19:30</div>
+        <div class="timeline-title">🍽 Osteria del Cinghiale Bianco（白野豬）</div>
+        <div class="timeline-desc">南岸知名老店，野豬肉醬寬扁麵 + 佛羅倫斯丁骨牛排</div>
+        <div class="timeline-tip">原訂 6/18 中午但週四中午不營業（官方確認），挪到 6/19 晚餐 — 週五晚正常營業。⚠ 建議 5/30 前訂位（5 人桌，旺季熱門）</div>
       </div>
     </div>
   </div>
@@ -1841,14 +1882,16 @@ body {
         <div class="timeline-title">抵達 GATE 2 LIGHT BLU 安檢</div>
       </div>
       <div class="timeline-item ticket">
-        <div class="timeline-time">09:00</div>
-        <div class="timeline-title">🏛 米蘭大教堂 Combo Lift <span class="ticket-badge">已訂 09:00</span></div>
+        <div class="timeline-time">09:00 進場<br>~12:00 結束</div>
+        <div class="timeline-title">🏛 米蘭大教堂 Combo Lift <span class="ticket-badge">預約入場 09:00-09:30</span></div>
         <div class="timeline-desc">
           每人 €26，共 €130<br>
           <span class="warning-badge">要列印門票</span><br>
-          含：教堂內部 + 屋頂露台（電梯上、樓梯下）+ 博物館 + San Gottardo 教堂
+          含：教堂內部 + 屋頂露台（電梯上、樓梯下）+ 博物館 + San Gottardo 教堂<br>
+          <strong>完整參觀流程</strong>：教堂內部（30-45 分）→ 屋頂露台（60-75 分）→ 大教堂博物館（45 分）→ San Gottardo（15 分），預計約 12:00 結束
         </div>
         <div class="timeline-tip">
+          ⚠ <strong>預約入場時段：09:00-09:30，逾時無法遞補</strong><br>
           ⚠ 服裝：不可穿短褲、背心、細肩帶、迷你裙<br>
           ⚠ 不可帶大型行李<br>
           ⚠ 教堂與露台上無廁所，先上完再進場
@@ -1880,7 +1923,7 @@ body {
         <div class="timeline-title">🦴 San Bernardino alle Ossa 人骨教堂</div>
         <div class="timeline-desc">
           Via Carlo Giuseppe Merlo 2，距大教堂步行 5 分鐘<br>
-          以亡者頭骨與腿骨裝飾牆面的冷門景點，**免費入場、週一開放**，與大教堂形成生死對比
+          以亡者頭骨與腿骨裝飾牆面的冷門景點，<strong>免費入場、週一開放</strong>，與大教堂形成生死對比
         </div>
       </div>
       <div class="timeline-item">
@@ -1905,7 +1948,7 @@ body {
         <div class="timeline-title">🧳 回住宿整理行李 40 分鐘</div>
         <div class="timeline-desc">
           <strong>先收 70% 就好</strong>，留 30% 彈性給晚上回住宿後的最終打包<br>
-          隔天 07:30 要出發 Malpensa、05:30 起床，現在先收可避免凌晨手忙腳亂
+          隔天 07:00 要出發 Malpensa（08:15 抵達）、05:30 起床，現在先收可避免凌晨手忙腳亂
         </div>
       </div>
       <div class="timeline-item">
@@ -1937,7 +1980,7 @@ body {
       <div class="timeline-item">
         <div class="timeline-time">22:30</div>
         <div class="timeline-title">🧳 最終行李確認</div>
-        <div class="timeline-desc">回住宿完成最後 30% 打包、護照、登機證、退稅單最終確認，隔天 07:30 出發 Malpensa</div>
+        <div class="timeline-desc">回住宿完成最後 30% 打包、護照、登機證、退稅單最終確認，隔天 07:00 出發 Malpensa（08:15 前抵達機場）</div>
       </div>
     </div>
   </div>
@@ -1952,18 +1995,30 @@ body {
     </div>
     <div class="card-body">
       <div class="timeline-item">
-        <div class="timeline-time">07:30</div>
+        <div class="timeline-time">05:30</div>
+        <div class="timeline-title">起床（提早避免凌晨手忙腳亂）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">06:00-06:50</div>
+        <div class="timeline-title">完成最後 30% 打包、退房、最後檢查行李</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">07:00</div>
         <div class="timeline-title">出發前往 Malpensa 機場</div>
         <div class="timeline-desc">
-          選項 A：Malpensa Express（52 分鐘，€15/人）<br>
-          選項 B：機場巴士（50 分鐘，€10/人）<br>
-          選項 C：包車（約 €110）
+          🥇 <strong>選項 A（5 人團體推薦）</strong>：包車約 €110 — 不用搬行李上下車，最省心；建議前一晚預訂<br>
+          選項 B：Malpensa Express 火車（52 分鐘，€15/人）— 建議搭 <strong>07:25 班次</strong>（保守），備案 07:55；需自行搬行李轉乘<br>
+          選項 C：機場巴士（50 分鐘，€10/人）— 最便宜但行李空間有限
         </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-time">09:00</div>
-        <div class="timeline-title">抵達機場，辦理報到、退稅</div>
-        <div class="timeline-tip">退稅商品先不要託運！海關可能查看商品</div>
+        <div class="timeline-time">~08:15</div>
+        <div class="timeline-title">抵達機場，辦理報到、退稅、託運</div>
+        <div class="timeline-tip">⚠ 5 人 + 國際線 + 退稅至少需 <strong>3 小時 buffer</strong>，務必 08:15 前抵達；長榮櫃台一般起飛前 50 分鐘關櫃。退稅商品先不要託運！海關可能查看商品</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:15</div>
+        <div class="timeline-title">通過安檢完畢，登機口候機</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-time">11:15</div>
@@ -2030,7 +2085,7 @@ body {
         <span class="city-tag" style="background:var(--siena)">Siena</span>
         <span class="city-tag" style="background:var(--gold)">Day 2</span>
         <h3>⛪ Siena 主教座堂</h3>
-        <div class="meta">含博物館、Facciatone 觀景台 | 6/15</div>
+        <div class="meta">PORTA del CIELO 全包通票（含屋頂導覽）| 6/15 11:30</div>
       </div>
       <div class="guide-card-actions"><a class="guide-dl-btn" href="guides/Siena主教座堂導覽手冊.docx" download onclick="event.stopPropagation()">📥 下載 .docx</a></div>
     </div>
@@ -2903,7 +2958,7 @@ body {
 
   <div id="checklist">
     <label class="checklist-item checked" onclick="toggleCheck(event,this)"><input type="checkbox" checked> 預訂 6/14 MXP→Parma→Siena EUROCOVER 包車（€1,010，10hr/日）✓</label>
-    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 支付 EUROCOVER 訂金 €606（60%）— <strong>2026/05/07 前</strong></label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> ⚠️ 支付 EUROCOVER 訂金 €606（60%）— <strong style="color:#c0392b">2026/05/07 截止日已過，請確認狀態</strong></label>
     <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 支付 EUROCOVER 尾款 €404（40%）— 2026/06/07</label>
     <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> <strong>取消</strong> 6/14 佛羅倫斯→Siena Booking 接送（已改包車）</label>
     <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 預訂 6/21 佛羅倫斯→米蘭高鐵票</label>
@@ -2911,6 +2966,8 @@ body {
     <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 確認 6/16 San Gimignano 交通（問房東）</label>
     <label class="checklist-item checked" onclick="toggleCheck(event,this)"><input type="checkbox" checked> 預約烏菲茲美術館門票 ✓ 6/18 09:00</label>
     <label class="checklist-item checked" onclick="toggleCheck(event,this)"><input type="checkbox" checked> 預約學院美術館門票 ✓ 6/20 09:00</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 預約 Siena 主教座堂 PORTA del CIELO 6/15 11:30 屋頂導覽英文場（5 人 €105，5/15 前訂）</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 訂 6/19 晚餐 Osteria del Cinghiale Bianco（5 人桌，5/30 前訂位）</label>
     <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 預約百花大教堂圓頂登頂（必須線上預約）</label>
     <label class="checklist-item checked" onclick="toggleCheck(event,this)"><input type="checkbox" checked> 預約米蘭大教堂 Combo Lift ✓ 6/22 09:00</label>
     <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 購買義大利 eSIM</label>
@@ -2920,7 +2977,7 @@ body {
     <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 確認信用卡 PIN 碼（預借現金密碼）</label>
     <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 下載離線地圖（Google Maps 義大利）</label>
     <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 下載 Trenitalia / Italo App</label>
-    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 列印門票（烏菲茲、學院美術館、米蘭大教堂）</label>
+    <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 列印門票（烏菲茲、學院美術館、米蘭大教堂、Siena PORTA del CIELO）</label>
     <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 準備轉接頭</label>
     <label class="checklist-item" onclick="toggleCheck(event,this)"><input type="checkbox"> 帶薄罩衫/絲巾（教堂用）</label>
   </div>
@@ -2942,14 +2999,16 @@ body {
   </div>
 
   <div class="cost-summary">
-    <h3 style="margin-bottom:12px">🎫 已訂門票</h3>
+    <h3 style="margin-bottom:12px">🎫 門票費用（已訂 + 待訂）</h3>
     <table style="width:100%;border-collapse:collapse;font-size:0.9em">
       <tr><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">景點</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">5人總價</th><th style="padding:8px;background:#f5f3ee;border:1px solid var(--border)">每人</th></tr>
+      <tr><td style="padding:8px;border:1px solid var(--border)">Siena PORTA del CIELO <span class="warning-badge" style="background:#e67e22;font-size:0.8em">待訂</span></td><td style="padding:8px;border:1px solid var(--border)">€105</td><td style="padding:8px;border:1px solid var(--border)">€21</td></tr>
       <tr><td style="padding:8px;border:1px solid var(--border)">烏菲茲美術館</td><td style="padding:8px;border:1px solid var(--border)">€145</td><td style="padding:8px;border:1px solid var(--border)">€29</td></tr>
       <tr><td style="padding:8px;border:1px solid var(--border)">學院美術館</td><td style="padding:8px;border:1px solid var(--border)">€120</td><td style="padding:8px;border:1px solid var(--border)">€24</td></tr>
       <tr><td style="padding:8px;border:1px solid var(--border)">米蘭大教堂</td><td style="padding:8px;border:1px solid var(--border)">€130</td><td style="padding:8px;border:1px solid var(--border)">€26</td></tr>
-      <tr style="font-weight:700"><td style="padding:8px;border:1px solid var(--border)">門票小計</td><td style="padding:8px;border:1px solid var(--border)">€395</td><td style="padding:8px;border:1px solid var(--border)">€79</td></tr>
+      <tr style="font-weight:700"><td style="padding:8px;border:1px solid var(--border)">門票小計（含待訂）</td><td style="padding:8px;border:1px solid var(--border)">€500</td><td style="padding:8px;border:1px solid var(--border)">€100</td></tr>
     </table>
+    <p style="margin-top:10px;font-size:0.85em;color:var(--text-muted)">💱 預估匯率：1 EUR ≈ TWD 36.7-37.2（實際以信用卡刷卡日銀行匯率為準，浮動 ±1% 為正常範圍）</p>
   </div>
 
   <div class="cost-summary">
@@ -3203,7 +3262,7 @@ const guideContent = {
         <li><strong>尼古拉·皮薩諾的講道壇</strong> — 哥德式雕刻的巔峰之作</li>
         <li><strong>Facciatone 觀景台</strong> — 蓋到一半放棄的新教堂殘牆，爬上去能俯瞰田野廣場和托斯卡尼丘陵</li>
       </ul>
-      <div class="highlight-box"><strong>建議</strong>：購買 Opa Si Pass（~€15-17），含教堂+博物館+Facciatone 觀景台</div>
+      <div class="highlight-box"><strong>採用票券</strong>：<strong>PORTA del CIELO 全包通票 €21/人</strong>（5 人 €105），含教堂、博物館、Piccolomini 圖書館、Facciatone 觀景台、洗禮堂、地下聖殿，加 11:30 屋頂導覽 30 分鐘（限額小團）；2026/6/15 為地板覆蓋保護期，56 幅鑲嵌畫精華大多看不到，但屋頂導覽可看彩繪玻璃近距離 + 星空穹頂 + 拱頂結構</div>
       <div class="tip-box"><strong>冷知識</strong>：Siena 人原本想把教堂擴建成當時世界最大的教堂（比梵蒂岡還大），但 1348 年黑死病和經濟崩潰讓工程永遠停擺，只留下一面氣派的殘牆——就是現在的 Facciatone 觀景台。</div>
     `
   },
