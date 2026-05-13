@@ -1307,30 +1307,117 @@ body {
   <span id="fx-text">💱 載入即時匯率中…</span>
   <span style="opacity:0.8;font-size:0.9em;margin-left:8px">（本頁費用以 1 EUR = 36.7 TWD 概算）</span>
 </div>
+
+<!-- 懸浮匯率換算器 -->
+<button id="fx-fab" type="button" aria-label="開啟匯率換算器" onclick="window.__fx.toggle()" style="position:fixed;right:20px;bottom:20px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#b44233,#d35445);color:#fff;border:none;font-size:1.5em;box-shadow:0 4px 16px rgba(180,66,51,0.4);cursor:pointer;z-index:9999;transition:transform 0.2s;">💱</button>
+
+<div id="fx-calc" style="display:none;position:fixed;right:20px;bottom:88px;width:300px;background:#fff;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.18);padding:18px;z-index:9999;font-family:Inter,sans-serif;color:#2d3436;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+    <strong style="font-size:1.05em">💱 即時換算</strong>
+    <button type="button" onclick="window.__fx.toggle()" style="background:none;border:none;font-size:1.3em;cursor:pointer;color:#7a7572;line-height:1;padding:0 4px;" aria-label="關閉">×</button>
+  </div>
+  <div id="fx-calc-rate" style="font-size:0.82em;color:#7a7572;margin-bottom:14px;text-align:center;padding:6px 8px;background:#f8f6f1;border-radius:8px;">
+    1 EUR = NT$ <strong id="fx-calc-rate-val">36.70</strong>
+    <div id="fx-calc-rate-date" style="font-size:0.9em;margin-top:2px;opacity:0.8"></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+    <label style="width:32px;font-weight:600;font-size:1.1em;color:#b44233;">€</label>
+    <input type="number" id="fx-eur" placeholder="0" min="0" step="any" inputmode="decimal" oninput="window.__fx.fromEur()" style="flex:1;padding:8px 10px;border:1px solid #e8e3db;border-radius:8px;font-size:1em;font-family:inherit;">
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+    <label style="width:32px;font-weight:600;font-size:0.95em;color:#2d3436;">NT$</label>
+    <input type="number" id="fx-twd" placeholder="0" min="0" step="any" inputmode="decimal" oninput="window.__fx.fromTwd()" style="flex:1;padding:8px 10px;border:1px solid #e8e3db;border-radius:8px;font-size:1em;font-family:inherit;">
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;">
+    <span style="font-size:0.78em;color:#7a7572;width:100%;margin-bottom:2px;">快速面額（€）</span>
+    <button type="button" onclick="window.__fx.quick(5)" style="flex:1;min-width:50px;padding:7px;border:1px solid #e8e3db;border-radius:6px;background:#fff;cursor:pointer;font-size:0.85em;font-family:inherit;">€5</button>
+    <button type="button" onclick="window.__fx.quick(10)" style="flex:1;min-width:50px;padding:7px;border:1px solid #e8e3db;border-radius:6px;background:#fff;cursor:pointer;font-size:0.85em;font-family:inherit;">€10</button>
+    <button type="button" onclick="window.__fx.quick(20)" style="flex:1;min-width:50px;padding:7px;border:1px solid #e8e3db;border-radius:6px;background:#fff;cursor:pointer;font-size:0.85em;font-family:inherit;">€20</button>
+    <button type="button" onclick="window.__fx.quick(50)" style="flex:1;min-width:50px;padding:7px;border:1px solid #e8e3db;border-radius:6px;background:#fff;cursor:pointer;font-size:0.85em;font-family:inherit;">€50</button>
+    <button type="button" onclick="window.__fx.quick(100)" style="flex:1;min-width:50px;padding:7px;border:1px solid #e8e3db;border-radius:6px;background:#fff;cursor:pointer;font-size:0.85em;font-family:inherit;">€100</button>
+    <button type="button" onclick="window.__fx.quick(200)" style="flex:1;min-width:50px;padding:7px;border:1px solid #e8e3db;border-radius:6px;background:#fff;cursor:pointer;font-size:0.85em;font-family:inherit;">€200</button>
+  </div>
+</div>
+
 <script>
 (function() {
+  var DEFAULT_RATE = 36.7;
+  var state = { rate: DEFAULT_RATE, source: '預設值', date: '' };
+
+  function setRate(rate, source, date) {
+    state.rate = rate;
+    state.source = source;
+    state.date = date || '';
+    var el = document.getElementById('fx-calc-rate-val');
+    var dateEl = document.getElementById('fx-calc-rate-date');
+    if (el) el.textContent = rate.toFixed(2);
+    if (dateEl) dateEl.textContent = source + (date ? ' · ' + date : '');
+  }
+
+  function updateBanner(rate, source, date) {
+    var diff = ((rate - DEFAULT_RATE) / DEFAULT_RATE * 100);
+    var diffStr = (diff >= 0 ? '+' : '') + diff.toFixed(1) + '%';
+    document.getElementById('fx-text').innerHTML =
+      '💱 即時匯率：<strong>1 EUR = NT$ ' + rate.toFixed(2) + '</strong> ' +
+      '<span style="opacity:0.85">（' + source + (date ? ' ' + date : '') + '，vs 預設 36.7 差 ' + diffStr + '）</span>';
+  }
+
+  // 先讀 localStorage 快取
+  try {
+    var cached = localStorage.getItem('fx-cache');
+    if (cached) {
+      var c = JSON.parse(cached);
+      if (c && c.rate) setRate(c.rate, '離線快取', c.date);
+    }
+  } catch (e) {}
+
+  // 抓即時匯率
   fetch('https://open.er-api.com/v6/latest/EUR')
-    .then(r => r.json())
-    .then(d => {
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
       var rate = d.rates && d.rates.TWD;
       var dateRaw = d.time_last_update_utc || '';
       var date = '';
-      if (dateRaw) {
-        try { date = new Date(dateRaw).toISOString().slice(0, 10); } catch (e) {}
-      }
+      if (dateRaw) { try { date = new Date(dateRaw).toISOString().slice(0, 10); } catch (e) {} }
       if (rate) {
-        var diff = ((rate - 36.7) / 36.7 * 100);
-        var diffStr = (diff >= 0 ? '+' : '') + diff.toFixed(1) + '%';
-        document.getElementById('fx-text').innerHTML =
-          '💱 即時匯率：<strong>1 EUR = NT$ ' + rate.toFixed(2) + '</strong> ' +
-          '<span style="opacity:0.85">（更新 ' + date + '，vs 預設 36.7 差 ' + diffStr + '）</span>';
+        setRate(rate, '更新', date);
+        updateBanner(rate, '更新', date);
+        try { localStorage.setItem('fx-cache', JSON.stringify({ rate: rate, date: date })); } catch (e) {}
       } else {
         document.getElementById('fx-text').textContent = '💱 1 EUR ≈ 36.7 TWD（離線預設值）';
       }
     })
     .catch(function() {
-      document.getElementById('fx-text').textContent = '💱 1 EUR ≈ 36.7 TWD（離線預設值，API 暫時無法連線）';
+      // API 失敗，banner 顯示快取或預設
+      if (state.source === '離線快取') {
+        updateBanner(state.rate, '離線快取', state.date);
+      } else {
+        document.getElementById('fx-text').textContent = '💱 1 EUR ≈ 36.7 TWD（離線預設值，API 暫時無法連線）';
+      }
     });
+
+  // 換算器 API
+  window.__fx = {
+    toggle: function() {
+      var c = document.getElementById('fx-calc');
+      c.style.display = c.style.display === 'none' ? 'block' : 'none';
+      if (c.style.display === 'block') {
+        setTimeout(function() { document.getElementById('fx-eur').focus(); }, 50);
+      }
+    },
+    fromEur: function() {
+      var eur = parseFloat(document.getElementById('fx-eur').value);
+      document.getElementById('fx-twd').value = isNaN(eur) ? '' : (eur * state.rate).toFixed(0);
+    },
+    fromTwd: function() {
+      var twd = parseFloat(document.getElementById('fx-twd').value);
+      document.getElementById('fx-eur').value = isNaN(twd) ? '' : (twd / state.rate).toFixed(2);
+    },
+    quick: function(eur) {
+      document.getElementById('fx-eur').value = eur;
+      this.fromEur();
+    }
+  };
 })();
 </script>
 
