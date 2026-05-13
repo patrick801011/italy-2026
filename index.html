@@ -1302,6 +1302,38 @@ body {
 </head>
 <body>
 
+<!-- 即時匯率 Banner -->
+<div id="fx-banner" style="background:linear-gradient(90deg,#b44233,#d35445);color:#fff;text-align:center;padding:8px 16px;font-size:0.88em;font-weight:500;letter-spacing:0.3px;">
+  <span id="fx-text">💱 載入即時匯率中…</span>
+  <span style="opacity:0.8;font-size:0.9em;margin-left:8px">（本頁費用以 1 EUR = 36.7 TWD 概算）</span>
+</div>
+<script>
+(function() {
+  fetch('https://open.er-api.com/v6/latest/EUR')
+    .then(r => r.json())
+    .then(d => {
+      var rate = d.rates && d.rates.TWD;
+      var dateRaw = d.time_last_update_utc || '';
+      var date = '';
+      if (dateRaw) {
+        try { date = new Date(dateRaw).toISOString().slice(0, 10); } catch (e) {}
+      }
+      if (rate) {
+        var diff = ((rate - 36.7) / 36.7 * 100);
+        var diffStr = (diff >= 0 ? '+' : '') + diff.toFixed(1) + '%';
+        document.getElementById('fx-text').innerHTML =
+          '💱 即時匯率：<strong>1 EUR = NT$ ' + rate.toFixed(2) + '</strong> ' +
+          '<span style="opacity:0.85">（更新 ' + date + '，vs 預設 36.7 差 ' + diffStr + '）</span>';
+      } else {
+        document.getElementById('fx-text').textContent = '💱 1 EUR ≈ 36.7 TWD（離線預設值）';
+      }
+    })
+    .catch(function() {
+      document.getElementById('fx-text').textContent = '💱 1 EUR ≈ 36.7 TWD（離線預設值，API 暫時無法連線）';
+    });
+})();
+</script>
+
 <!-- Navigation -->
 <nav class="nav">
   <div class="nav-inner">
